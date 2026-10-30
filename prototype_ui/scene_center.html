@@ -244,12 +244,13 @@
                             <input type="text" placeholder="请输入" class="border border-gray-300 rounded px-3 py-1.5 text-sm w-[220px] focus:outline-none focus:border-[#1c7ffd] transition-colors placeholder-gray-400">
                         </div>
                         <div class="flex items-center gap-3">
-                            <span class="text-[#606266]">授权状态：</span>
+                            <span class="text-[#606266]">任务状态：</span>
                             <div class="relative">
                                 <select class="border border-gray-300 rounded px-3 py-1.5 text-sm w-[220px] focus:outline-none focus:border-[#1c7ffd] text-gray-400 bg-white appearance-none cursor-pointer transition-colors">
                                     <option value="">请选择</option>
-                                    <option value="1" class="text-gray-700">已授权</option>
-                                    <option value="0" class="text-gray-700">未授权</option>
+                                    <option value="draft" class="text-gray-700">草稿</option>
+                                    <option value="running" class="text-gray-700">进行中</option>
+                                    <option value="finished" class="text-gray-700">已结束</option>
                                 </select>
                                 <i class="fa-solid fa-chevron-down absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
                             </div>
@@ -276,53 +277,15 @@
                 <!-- 任务列表 Grid -->
                 <div class="grid grid-cols-3 gap-5 pb-4">
                     
-                    <!-- Card 1 -->
-                    <div class="group relative bg-white rounded-lg shadow-[0_2px_12px_0_rgba(0,0,0,0.05)] border border-gray-100 overflow-hidden flex flex-col h-[210px] transition-all hover:shadow-lg hover:border-blue-200 cursor-default">
-                        <!-- 纯CSS模拟图2悬浮背景 -->
-                        <div class="absolute inset-0 bg-gradient-to-br from-[#ffffff] via-[#f0f6ff] to-[#e1edff] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0">
-                            <svg class="absolute bottom-0 right-0 w-full h-full opacity-60 pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
-                                <path d="M100,100 L100,40 C80,70 50,90 0,100 Z" fill="rgba(64,158,255,0.06)"></path>
-                                <path d="M100,100 L100,0 C70,40 30,80 0,100 Z" fill="rgba(64,158,255,0.04)"></path>
-                            </svg>
+                    <!-- Card 1 - 新增任务入口 -->
+                    <a href="task_create.html" class="group relative bg-white rounded-lg border-2 border-dashed border-gray-300 overflow-hidden flex flex-col h-[210px] transition-all hover:border-[#1c7ffd] hover:shadow-lg cursor-pointer">
+                        <div class="relative z-10 p-5 flex flex-col h-full items-center justify-center gap-3">
+                            <div class="w-14 h-14 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center text-2xl transition-all group-hover:bg-blue-50 group-hover:text-[#1c7ffd]">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
+                            <span class="text-[#606266] text-[15px] font-medium transition-colors group-hover:text-[#1c7ffd]">新增任务</span>
                         </div>
-                        <div class="relative z-10 p-5 flex flex-col h-full">
-                            <div class="flex justify-between items-start mb-4">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-11 h-11 rounded-full bg-[#1c7ffd] text-white flex items-center justify-center text-xl shadow-sm shrink-0">
-                                        <i class="fa-solid fa-envelope"></i>
-                                    </div>
-                                    <div class="flex flex-col">
-                                        <span class="text-[#303133] font-bold text-[15px] truncate w-32" title="测试离线任务...">测试离线任务...</span>
-                                        <span class="text-[#909399] text-[12px] mt-0.5">任务ID：CJ20260602002</span>
-                                    </div>
-                                </div>
-                                <div class="bg-[#1c7ffd] text-white px-2 py-0.5 rounded-full text-[11px] flex items-center shadow-sm whitespace-nowrap">
-                                    <i class="fa-solid fa-circle-check mr-1"></i> 已授权
-                                </div>
-                            </div>
-                            <div class="border-b border-gray-100 mb-3 group-hover:border-blue-100 transition-colors duration-300"></div>
-                            <div class="flex flex-col gap-1.5 mb-auto">
-                                <span class="text-[#606266] text-[13px] truncate" title="任务描述：测试离线任务_20260602002">任务描述：测试离线任务_20260602002</span>
-                                <div class="flex items-center gap-6 text-[#909399] text-[13px] mt-1">
-                                    <span>数据资源数：12</span>
-                                    <span>数据产品数：0</span>
-                                    <span>公共数据产品数：0</span>
-                                </div>
-                            </div>
-                            <!-- Footer Area -->
-                            <div class="relative h-8 mt-4 overflow-hidden">
-                                <div class="absolute inset-0 flex items-center text-[#909399] text-[12px] transition-all duration-300 group-hover:opacity-0 group-hover:translate-y-4">
-                                    任务开始时间：2026-06-02 &nbsp;&nbsp; 任务截止时间：2026-12-31
-                                </div>
-                                <div class="absolute inset-0 flex items-center gap-2 opacity-0 translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-                                    <a href="scene_detail.html" class="flex-1 text-center py-1.5 bg-white border border-gray-200 rounded text-[#606266] hover:text-[#1c7ffd] hover:border-[#1c7ffd] hover:bg-blue-50 text-[12px] transition-colors shadow-sm cursor-pointer">任务详情</a>
-                                    <a href="package_resources.html" class="flex-1 text-center py-1.5 bg-white border border-gray-200 rounded text-[#606266] hover:text-[#1c7ffd] hover:border-[#1c7ffd] hover:bg-blue-50 text-[12px] transition-colors shadow-sm cursor-pointer">套餐资源</a>
-                                    <a href="data_resources.html" class="flex-1 text-center py-1.5 bg-white border border-gray-200 rounded text-[#606266] hover:text-[#1c7ffd] hover:border-[#1c7ffd] hover:bg-blue-50 text-[12px] transition-colors shadow-sm cursor-pointer">数据资源</a>
-                                    <a href="dev_team.html" class="flex-1 text-center py-1.5 bg-white border border-gray-200 rounded text-[#606266] hover:text-[#1c7ffd] hover:border-[#1c7ffd] hover:bg-blue-50 text-[12px] transition-colors shadow-sm cursor-pointer">开发者</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </a>
 
                     <!-- Card 2 -->
                     <div class="group relative bg-white rounded-lg shadow-[0_2px_12px_0_rgba(0,0,0,0.05)] border border-gray-100 overflow-hidden flex flex-col h-[210px] transition-all hover:shadow-lg hover:border-blue-200 cursor-default">
@@ -344,7 +307,7 @@
                                     </div>
                                 </div>
                                 <div class="bg-[#1c7ffd] text-white px-2 py-0.5 rounded-full text-[11px] flex items-center shadow-sm whitespace-nowrap">
-                                    <i class="fa-solid fa-circle-check mr-1"></i> 已授权
+                                    <i class="fa-solid fa-circle-play mr-1"></i> 进行中
                                 </div>
                             </div>
                             <div class="border-b border-gray-100 mb-3 group-hover:border-blue-100 transition-colors duration-300"></div>
@@ -390,7 +353,7 @@
                                     </div>
                                 </div>
                                 <div class="bg-[#1c7ffd] text-white px-2 py-0.5 rounded-full text-[11px] flex items-center shadow-sm whitespace-nowrap">
-                                    <i class="fa-solid fa-circle-check mr-1"></i> 已授权
+                                    <i class="fa-solid fa-circle-play mr-1"></i> 进行中
                                 </div>
                             </div>
                             <div class="border-b border-gray-100 mb-3 group-hover:border-blue-100 transition-colors duration-300"></div>
@@ -435,8 +398,8 @@
                                         <span class="text-[#909399] text-[12px] mt-0.5">任务ID：CJ20260521002</span>
                                     </div>
                                 </div>
-                                <div class="bg-[#1c7ffd] text-white px-2 py-0.5 rounded-full text-[11px] flex items-center shadow-sm whitespace-nowrap">
-                                    <i class="fa-solid fa-circle-check mr-1"></i> 已授权
+                                <div class="bg-[#f5f7fa] text-[#909399] px-2 py-0.5 rounded-full text-[11px] border border-gray-200 flex items-center whitespace-nowrap">
+                                    <i class="fa-solid fa-circle-check mr-1"></i> 已结束
                                 </div>
                             </div>
                             <div class="border-b border-gray-100 mb-3 group-hover:border-blue-100 transition-colors duration-300"></div>
@@ -481,8 +444,8 @@
                                         <span class="text-[#909399] text-[12px] mt-0.5">任务ID：CJ20260521001</span>
                                     </div>
                                 </div>
-                                <div class="bg-[#1c7ffd] text-white px-2 py-0.5 rounded-full text-[11px] flex items-center shadow-sm whitespace-nowrap">
-                                    <i class="fa-solid fa-circle-check mr-1"></i> 已授权
+                                <div class="bg-white text-[#909399] px-2 py-0.5 rounded-full text-[11px] border border-gray-300 flex items-center whitespace-nowrap">
+                                    <i class="fa-regular fa-clock mr-1"></i> 草稿
                                 </div>
                             </div>
                             <div class="border-b border-gray-100 mb-3 group-hover:border-blue-100 transition-colors duration-300"></div>
@@ -527,8 +490,8 @@
                                         <span class="text-[#909399] text-[12px] mt-0.5">任务ID：CJ20262220003</span>
                                     </div>
                                 </div>
-                                <div class="bg-[#1c7ffd] text-white px-2 py-0.5 rounded-full text-[11px] flex items-center shadow-sm whitespace-nowrap">
-                                    <i class="fa-solid fa-circle-check mr-1"></i> 已授权
+                                <div class="bg-[#f5f7fa] text-[#909399] px-2 py-0.5 rounded-full text-[11px] border border-gray-200 flex items-center whitespace-nowrap">
+                                    <i class="fa-solid fa-circle-check mr-1"></i> 已结束
                                 </div>
                             </div>
                             <div class="border-b border-gray-100 mb-3 group-hover:border-blue-100 transition-colors duration-300"></div>
@@ -554,6 +517,24 @@
                         </div>
                     </div>
 
+                </div>
+
+                <!-- 页码 -->
+                <div class="flex justify-end items-center text-[13px] text-[#606266] gap-2 shrink-0 pb-1">
+                    <span>共 6 条</span>
+                    <div class="flex items-center gap-1">
+                        <button class="w-8 h-8 flex items-center justify-center border border-gray-200 rounded text-gray-300 cursor-not-allowed"><i class="fa-solid fa-angle-left text-[10px]"></i></button>
+                        <button class="w-8 h-8 flex items-center justify-center border border-[#1c7ffd] bg-[#1c7ffd] text-white rounded">1</button>
+                        <button class="w-8 h-8 flex items-center justify-center border border-gray-200 rounded text-gray-300 cursor-not-allowed"><i class="fa-solid fa-angle-right text-[10px]"></i></button>
+                    </div>
+                    <div class="relative">
+                        <select class="h-8 px-3 border border-gray-200 rounded focus:outline-none focus:border-[#1c7ffd] appearance-none pr-6 bg-white">
+                            <option>10 条/页</option>
+                            <option>20 条/页</option>
+                            <option>50 条/页</option>
+                        </select>
+                        <i class="fa-solid fa-angle-down absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 text-[10px] pointer-events-none"></i>
+                    </div>
                 </div>
             </div>
         </main>

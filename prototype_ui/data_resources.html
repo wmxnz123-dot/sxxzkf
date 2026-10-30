@@ -219,7 +219,7 @@
             <!-- 面包屑 -->
             <div class="h-[52px] flex items-center px-6 text-[#606266] shrink-0 bg-white border-b border-gray-100 text-[14px]">
                 <i class="fa-solid fa-house mr-2 text-gray-400"></i>
-                <span class="font-medium text-[#303133]">任务主页</span>
+                <a href="scene_center.html" class="font-medium text-[#303133] hover:text-[#1c7ffd] transition-colors cursor-pointer">任务主页</a>
             </div>
 
             <!-- 核心内容容器 -->
@@ -249,89 +249,88 @@
                 <div class="flex-1 flex flex-col overflow-hidden">
                     <div class="bg-white rounded-lg shadow-[0_2px_12px_0_rgba(0,0,0,0.05)] flex-1 flex flex-col p-6">
                         <!-- Tab栏 -->
-                        <div class="flex border-b border-gray-100 shrink-0">
-                            <div id="tab-data-resource" class="py-3 px-2 text-[#1c7ffd] border-b-2 border-[#1c7ffd] font-medium mr-8 cursor-pointer" onclick="switchDataTab('resource')">
-                                数据资源
-                            </div>
-                            <div id="tab-data-product" class="py-3 px-2 text-[#606266] hover:text-[#1c7ffd] mr-8 cursor-pointer transition-colors" onclick="switchDataTab('product')">
-                                数据产品
-                            </div>
-                            <div id="tab-data-public-product" class="py-3 px-2 text-[#606266] hover:text-[#1c7ffd] mr-8 cursor-pointer transition-colors" onclick="switchDataTab('public-product')">
-                                公共数据产品
-                            </div>
-                        </div>
-
-                        <!-- 列表区: 数据资源 -->
-                        <div id="content-data-resource" class="flex-1 flex flex-col mt-6 relative">
-                            <div class="flex justify-between items-center mb-4">
-                                <h2 class="text-[15px] font-bold text-[#303133]">数据资源列表</h2>
-                                <div class="flex items-center gap-3">
-                                    <i class="fa-solid fa-rotate-right text-gray-400 cursor-pointer hover:text-[#1c7ffd]"></i>
-                                    <i class="fa-solid fa-gear text-gray-400 cursor-pointer hover:text-[#1c7ffd]"></i>
+                        <div class="flex items-center justify-between border-b border-gray-100 shrink-0">
+                            <div class="flex">
+                                <div id="tab-data-product" class="py-3 px-2 text-[#1c7ffd] border-b-2 border-[#1c7ffd] font-medium mr-8 cursor-pointer" onclick="switchDataTab('product')">
+                                    已授权的数据产品
+                                </div>
+                                <div id="tab-enterprise" class="py-3 px-2 text-[#606266] hover:text-[#1c7ffd] mr-8 cursor-pointer transition-colors" onclick="switchDataTab('enterprise')">
+                                    本企业的数据
                                 </div>
                             </div>
-                            
-                            <div class="flex-1 overflow-x-auto">
-                                <table class="w-full text-left text-[13px] text-[#606266] table-fixed">
-                                    <thead class="bg-[#f8f8f9] text-[#909399] font-medium border-b border-gray-200">
-                                        <tr>
-                                            <th class="py-3 px-2 text-center w-12">序号</th>
-                                            <th class="py-3 px-2 w-32 truncate" title="数据资源标识码">数据资源标识码</th>
-                                            <th class="py-3 px-2 w-32 truncate" title="数据资源名称">数据资源名称</th>
-                                            <th class="py-3 px-2 w-32 truncate" title="资源授权方">资源授权方</th>
-                                            <th class="py-3 px-2 text-center w-20">使用版本</th>
-                                            <th class="py-3 px-2 text-center w-20">资源类型</th>
-                                            <th class="py-3 px-2 w-36">授权开始时间</th>
-                                            <th class="py-3 px-2 w-36">授权结束时间</th>
-                                            <th class="py-3 px-2 text-center w-16">操作</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                                            <td class="py-4 px-2 text-center">1</td>
-                                            <td class="py-4 px-2 truncate" title="91441203731457725R000ABY">91441203731457725R000ABY</td>
-                                            <td class="py-4 px-2 truncate" title="这是资源名称">这是资源名称</td>
-                                            <td class="py-4 px-2 truncate" title="这是主体名称">这是主体名称</td>
-                                            <td class="py-4 px-2 text-center">V1.0</td>
-                                            <td class="py-4 px-2 text-center">API</td>
-                                            <td class="py-4 px-2 truncate" title="2026-06-23 14:44:10">2026-06-23 14:44:10</td>
-                                            <td class="py-4 px-2 truncate" title="2026-08-23 14:44:10">2026-08-23 14:44:10</td>
-                                            <td class="py-4 px-2 text-center">
-                                                <a href="#" class="text-[#1c7ffd] hover:underline mx-1" onclick="openDataResourceDrawer()">查看</a>
-                                            </td>
-                                        </tr>
-                                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                                            <td class="py-4 px-2 text-center">2</td>
-                                            <td class="py-4 px-2 truncate" title="91441203731457725R000ABY">91441203731457725R000ABY</td>
-                                            <td class="py-4 px-2 truncate" title="这是资源名称">这是资源名称</td>
-                                            <td class="py-4 px-2 truncate" title="这是主体名称">这是主体名称</td>
-                                            <td class="py-4 px-2 text-center">V1.0</td>
-                                            <td class="py-4 px-2 text-center">数据库表</td>
-                                            <td class="py-4 px-2 truncate" title="2026-06-23 14:44:10">2026-06-23 14:44:10</td>
-                                            <td class="py-4 px-2 truncate" title="2026-08-23 14:44:10">2026-08-23 14:44:10</td>
-                                            <td class="py-4 px-2 text-center">
-                                                <a href="#" class="text-[#1c7ffd] hover:underline mx-1" onclick="openDataResourceDrawer()">查看</a>
-                                            </td>
-                                        </tr>
-                                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                                            <td class="py-4 px-2 text-center">3</td>
-                                            <td class="py-4 px-2 truncate" title="91441203731457725R000ABY">91441203731457725R000ABY</td>
-                                            <td class="py-4 px-2 truncate" title="这是资源名称">这是资源名称</td>
-                                            <td class="py-4 px-2 truncate" title="这是主体名称">这是主体名称</td>
-                                            <td class="py-4 px-2 text-center">V2.0</td>
-                                            <td class="py-4 px-2 text-center">API</td>
-                                            <td class="py-4 px-2 truncate" title="2026-06-23 14:44:10">2026-06-23 14:44:10</td>
-                                            <td class="py-4 px-2 truncate" title="2026-08-23 14:44:10">2026-08-23 14:44:10</td>
-                                            <td class="py-4 px-2 text-center">
-                                                <a href="#" class="text-[#1c7ffd] hover:underline mx-1" onclick="openDataResourceDrawer()">查看</a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <button class="h-8 px-4 bg-[#1c7ffd] text-white text-[13px] rounded flex items-center gap-1.5 hover:bg-[#3a8ffd] transition-colors" onclick="openAddDataModal()">
+                                <i class="fa-solid fa-plus text-[12px]"></i>添加加工数据
+                            </button>
+                        </div>
+
+                        <!-- 列表区: 已授权的数据产品 -->
+                        <div id="content-data-product" class="flex-1 flex flex-col mt-6 relative">
+                            <div class="flex justify-between items-center mb-4">
+                                <h2 class="text-[15px] font-bold text-[#303133]">已授权的数据产品</h2>
                             </div>
-                            
+
+                            <div class="flex-1 overflow-y-auto">
+                                <div class="grid grid-cols-3 gap-4 pb-2">
+                                    <div class="bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] hover:shadow-sm transition-all"
+                                         data-name="物流配送轨迹数据0910" data-type="库表" data-provider="永中软件股份有限公司" data-order="79132021369877928J61000000027S" data-tool="离线开发底座" data-code="DP2026061001" data-time="2026-06-10 10:00:00"
+                                         onclick="openDataProductDrawer(this)">
+                                        <div class="flex items-center gap-2 min-w-0">
+                                            <span class="text-[#303133] font-bold text-[14px] truncate" title="物流配送轨迹数据0910">物流配送轨迹数据0910</span>
+                                            <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">库表</span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">提供方：永中软件股份有限公司</span>
+                                            <span class="truncate">订单编号：79132021369877928J61000000027S</span>
+                                            <span class="truncate">开发工具：离线开发底座</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] hover:shadow-sm transition-all"
+                                         data-name="产品质量检测报告数据0910" data-type="库表" data-provider="永中软件股份有限公司" data-order="79132021369877928J61000000026U" data-tool="离线开发底座" data-code="DP2026061002" data-time="2026-06-10 09:30:00"
+                                         onclick="openDataProductDrawer(this)">
+                                        <div class="flex items-center gap-2 min-w-0">
+                                            <span class="text-[#303133] font-bold text-[14px] truncate" title="产品质量检测报告数据0910">产品质量检测报告数据0910</span>
+                                            <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">库表</span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">提供方：永中软件股份有限公司</span>
+                                            <span class="truncate">订单编号：79132021369877928J61000000026U</span>
+                                            <span class="truncate">开发工具：离线开发底座</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] hover:shadow-sm transition-all"
+                                         data-name="社会链路隐私计算测试-091501" data-type="库表" data-provider="永中软件股份有限公司" data-order="79132021369877928J61000000002LZ" data-tool="离线开发底座" data-code="DP2026061501" data-time="2026-06-15 14:20:00"
+                                         onclick="openDataProductDrawer(this)">
+                                        <div class="flex items-center gap-2 min-w-0">
+                                            <span class="text-[#303133] font-bold text-[14px] truncate" title="社会链路隐私计算测试-091501">社会链路隐私计算测试-091501</span>
+                                            <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">库表</span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">提供方：永中软件股份有限公司</span>
+                                            <span class="truncate">订单编号：79132021369877928J61000000002LZ</span>
+                                            <span class="truncate">开发工具：离线开发底座</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] hover:shadow-sm transition-all"
+                                         data-name="人口基础信息查询接口" data-type="接口" data-provider="陕西省公安厅" data-order="79132021369877928J61000000031K" data-tool="离线开发底座" data-code="DP20260601001" data-time="2026-06-01 10:00:00"
+                                         onclick="openDataProductDrawer(this)">
+                                        <div class="flex items-center gap-2 min-w-0">
+                                            <span class="text-[#303133] font-bold text-[14px] truncate" title="人口基础信息查询接口">人口基础信息查询接口</span>
+                                            <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">接口</span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">提供方：陕西省公安厅</span>
+                                            <span class="truncate">订单编号：79132021369877928J61000000031K</span>
+                                            <span class="truncate">开发工具：离线开发底座</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="flex justify-end items-center mt-4 text-[13px] text-[#606266] gap-2 pt-4 border-t border-gray-100">
-                                <span>共 3 条</span>
+                                <span>共 4 条</span>
                                 <div class="flex items-center gap-1">
                                     <button class="w-8 h-8 flex items-center justify-center border border-gray-200 rounded text-gray-300 cursor-not-allowed"><i class="fa-solid fa-angle-left text-[10px]"></i></button>
                                     <button class="w-8 h-8 flex items-center justify-center border border-[#1c7ffd] bg-[#1c7ffd] text-white rounded">1</button>
@@ -340,126 +339,104 @@
                                 <div class="relative">
                                     <select class="h-8 px-3 border border-gray-200 rounded focus:outline-none focus:border-[#1c7ffd] appearance-none pr-6 bg-white">
                                         <option>10 条/页</option>
+                                        <option>20 条/页</option>
+                                        <option>50 条/页</option>
                                     </select>
                                     <i class="fa-solid fa-angle-down absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 text-[10px] pointer-events-none"></i>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- 列表区: 数据产品 -->
-                        <div id="content-data-product" class="flex-1 flex flex-col mt-6 relative hidden">
+                        <!-- 列表区: 本企业的数据 -->
+                        <div id="content-enterprise" class="flex-1 flex flex-col mt-6 relative hidden">
                             <div class="flex justify-between items-center mb-4">
-                                <h2 class="text-[15px] font-bold text-[#303133]">数据产品列表</h2>
-                                <div class="flex items-center gap-3">
-                                    <i class="fa-solid fa-rotate-right text-gray-400 cursor-pointer hover:text-[#1c7ffd]"></i>
-                                    <i class="fa-solid fa-gear text-gray-400 cursor-pointer hover:text-[#1c7ffd]"></i>
-                                </div>
+                                <h2 class="text-[15px] font-bold text-[#303133]">本企业的数据</h2>
                             </div>
-                            
-                            <div class="flex-1 overflow-x-auto">
-                                <table class="w-full text-left text-[13px] text-[#606266] table-fixed">
-                                    <thead class="bg-[#f8f8f9] text-[#909399] font-medium border-b border-gray-200">
-                                        <tr>
-                                            <th class="py-3 px-2 text-center w-12">序号</th>
-                                            <th class="py-3 px-2 w-32 truncate" title="数据产品标识码">数据产品标识码</th>
-                                            <th class="py-3 px-2 w-32 truncate" title="数据产品名称">数据产品名称</th>
-                                            <th class="py-3 px-2 w-32 truncate" title="产品提供方">产品提供方</th>
-                                            <th class="py-3 px-2 text-center w-20">使用版本</th>
-                                            <th class="py-3 px-2 text-center w-20">产品类型</th>
-                                            <th class="py-3 px-2 w-36">订购开始时间</th>
-                                            <th class="py-3 px-2 w-36">订购结束时间</th>
-                                            <th class="py-3 px-2 text-center w-16">操作</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                                            <td class="py-4 px-2 text-center">1</td>
-                                            <td class="py-4 px-2 truncate" title="DP20260601001">DP20260601001</td>
-                                            <td class="py-4 px-2 truncate" title="人口基础信息查询">人口基础信息查询</td>
-                                            <td class="py-4 px-2 truncate" title="陕西省公安厅">陕西省公安厅</td>
-                                            <td class="py-4 px-2 text-center">V1.0</td>
-                                            <td class="py-4 px-2 text-center">API</td>
-                                            <td class="py-4 px-2 truncate" title="2026-06-01 10:00:00">2026-06-01 10:00:00</td>
-                                            <td class="py-4 px-2 truncate" title="2027-06-01 10:00:00">2027-06-01 10:00:00</td>
-                                            <td class="py-4 px-2 text-center">
-                                                <a href="#" class="text-[#1c7ffd] hover:underline mx-1" onclick="openDataProductDrawer()">查看</a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            
-                            <div class="flex justify-end items-center mt-4 text-[13px] text-[#606266] gap-2 pt-4 border-t border-gray-100">
-                                <span>共 1 条</span>
-                                <div class="flex items-center gap-1">
-                                    <button class="w-8 h-8 flex items-center justify-center border border-gray-200 rounded text-gray-300 cursor-not-allowed"><i class="fa-solid fa-angle-left text-[10px]"></i></button>
-                                    <button class="w-8 h-8 flex items-center justify-center border border-[#1c7ffd] bg-[#1c7ffd] text-white rounded">1</button>
-                                    <button class="w-8 h-8 flex items-center justify-center border border-gray-200 rounded text-gray-300 cursor-not-allowed"><i class="fa-solid fa-angle-right text-[10px]"></i></button>
-                                </div>
-                                <div class="relative">
-                                    <select class="h-8 px-3 border border-gray-200 rounded focus:outline-none focus:border-[#1c7ffd] appearance-none pr-6 bg-white">
-                                        <option>10 条/页</option>
-                                    </select>
-                                    <i class="fa-solid fa-angle-down absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 text-[10px] pointer-events-none"></i>
-                                </div>
-                            </div>
-                        </div>
 
-<!-- 列表区: 公共数据产品 -->
-                        <div id="content-data-public-product" class="flex-1 flex flex-col mt-6 relative hidden">
-                            <div class="flex justify-between items-center mb-4">
-                                <h2 class="text-[15px] font-bold text-[#303133]">公共数据产品列表</h2>
-                                <div class="flex items-center gap-3">
-                                    <i class="fa-solid fa-rotate-right text-gray-400 cursor-pointer hover:text-[#1c7ffd]"></i>
-                                    <i class="fa-solid fa-gear text-gray-400 cursor-pointer hover:text-[#1c7ffd]"></i>
+                            <div class="flex-1 overflow-y-auto">
+                                <div class="grid grid-cols-3 gap-4 pb-2">
+                                    <div class="bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] hover:shadow-sm transition-all"
+                                         data-name="物流配送轨迹数据源" data-type="库表" data-provider="本企业" data-scope="enterprise" data-order="ZY2026060201" data-tool="本企业数据" data-code="ZY2026060201" data-time="2026-06-02 09:15:32"
+                                         onclick="openDataProductDrawer(this)">
+                                        <div class="flex items-center gap-2 min-w-0">
+                                            <span class="text-[#303133] font-bold text-[14px] truncate" title="物流配送轨迹数据源">物流配送轨迹数据源</span>
+                                            <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">库表</span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">数据源编号：ZY2026060201</span>
+                                            <span class="truncate">更新时间：2026-06-02 09:15:32</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] hover:shadow-sm transition-all"
+                                         data-name="产品质量检测报告数据源" data-type="库表" data-provider="本企业" data-scope="enterprise" data-order="ZY2026060101" data-tool="本企业数据" data-code="ZY2026060101" data-time="2026-06-01 18:42:10"
+                                         onclick="openDataProductDrawer(this)">
+                                        <div class="flex items-center gap-2 min-w-0">
+                                            <span class="text-[#303133] font-bold text-[14px] truncate" title="产品质量检测报告数据源">产品质量检测报告数据源</span>
+                                            <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">库表</span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">数据源编号：ZY2026060101</span>
+                                            <span class="truncate">更新时间：2026-06-01 18:42:10</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] hover:shadow-sm transition-all"
+                                         data-name="企业采购订单明细数据源" data-type="库表" data-provider="本企业" data-scope="enterprise" data-order="ZY2026060102" data-tool="本企业数据" data-code="ZY2026060102" data-time="2026-06-01 14:08:45"
+                                         onclick="openDataProductDrawer(this)">
+                                        <div class="flex items-center gap-2 min-w-0">
+                                            <span class="text-[#303133] font-bold text-[14px] truncate" title="企业采购订单明细数据源">企业采购订单明细数据源</span>
+                                            <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">库表</span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">数据源编号：ZY2026060102</span>
+                                            <span class="truncate">更新时间：2026-06-01 14:08:45</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] hover:shadow-sm transition-all"
+                                         data-name="供应商基础信息数据源" data-type="库表" data-provider="本企业" data-scope="enterprise" data-order="ZY2026053001" data-tool="本企业数据" data-code="ZY2026053001" data-time="2026-05-30 10:26:07"
+                                         onclick="openDataProductDrawer(this)">
+                                        <div class="flex items-center gap-2 min-w-0">
+                                            <span class="text-[#303133] font-bold text-[14px] truncate" title="供应商基础信息数据源">供应商基础信息数据源</span>
+                                            <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">库表</span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">数据源编号：ZY2026053001</span>
+                                            <span class="truncate">更新时间：2026-05-30 10:26:07</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] hover:shadow-sm transition-all"
+                                         data-name="仓库库存实时数据源" data-type="库表" data-provider="本企业" data-scope="enterprise" data-order="ZY2026052901" data-tool="本企业数据" data-code="ZY2026052901" data-time="2026-05-29 16:33:21"
+                                         onclick="openDataProductDrawer(this)">
+                                        <div class="flex items-center gap-2 min-w-0">
+                                            <span class="text-[#303133] font-bold text-[14px] truncate" title="仓库库存实时数据源">仓库库存实时数据源</span>
+                                            <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">库表</span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">数据源编号：ZY2026052901</span>
+                                            <span class="truncate">更新时间：2026-05-29 16:33:21</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] hover:shadow-sm transition-all"
+                                         data-name="供应商金融信息接口" data-type="接口" data-provider="本企业" data-scope="enterprise" data-order="JK2026052801" data-tool="本企业数据" data-code="JK2026052801" data-time="2026-05-28 11:52:39"
+                                         onclick="openDataProductDrawer(this)">
+                                        <div class="flex items-center gap-2 min-w-0">
+                                            <span class="text-[#303133] font-bold text-[14px] truncate" title="供应商金融信息接口">供应商金融信息接口</span>
+                                            <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">接口</span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">接口编号：JK2026052801</span>
+                                            <span class="truncate">更新时间：2026-05-28 11:52:39</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            
-                            <div class="flex-1 overflow-x-auto">
-                                <table class="w-full text-left text-[13px] text-[#606266] table-fixed">
-                                    <thead class="bg-[#f8f8f9] text-[#909399] font-medium border-b border-gray-200">
-                                        <tr>
-                                            <th class="py-3 px-2 text-center w-12">序号</th>
-                                            <th class="py-3 px-2 w-32 truncate" title="数据产品标识码">数据产品标识码</th>
-                                            <th class="py-3 px-2 w-32 truncate" title="数据产品名称">数据产品名称</th>
-                                            <th class="py-3 px-2 w-32 truncate" title="产品提供方">产品提供方</th>
-                                            <th class="py-3 px-2 text-center w-20">产品类型</th>
-                                            <th class="py-3 px-2 w-36">订购开始时间</th>
-                                            <th class="py-3 px-2 w-36">订购结束时间</th>
-                                            <th class="py-3 px-2 text-center w-16">操作</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                                            <td class="py-4 px-2 text-center">1</td>
-                                            <td class="py-4 px-2 truncate" title="DP20260601001">DP20260601001</td>
-                                            <td class="py-4 px-2 truncate" title="人口基础信息查询">人口基础信息查询</td>
-                                            <td class="py-4 px-2 truncate" title="陕西省公安厅">陕西省公安厅</td>
-                                            <td class="py-4 px-2 text-center">API</td>
-                                            <td class="py-4 px-2 truncate" title="2026-06-01 10:00:00">2026-06-01 10:00:00</td>
-                                            <td class="py-4 px-2 truncate" title="2027-06-01 10:00:00">2027-06-01 10:00:00</td>
-                                            <td class="py-4 px-2 text-center">
-                                                <a href="#" class="text-[#1c7ffd] hover:underline mx-1" onclick="openDataProductDrawer()">查看</a>
-                                            </td>
-                                        </tr>
-<tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                                            <td class="py-4 px-2 text-center">2</td>
-                                            <td class="py-4 px-2 truncate" title="DS20260601002">DS20260601002</td>
-                                            <td class="py-4 px-2 truncate" title="企业基础信息库">企业基础信息库</td>
-                                            <td class="py-4 px-2 truncate" title="陕西省公安厅">陕西省公安厅</td>
-                                            <td class="py-4 px-2 text-center">数据集</td>
-                                            <td class="py-4 px-2 truncate" title="2026-06-01 10:00:00">2026-06-01 10:00:00</td>
-                                            <td class="py-4 px-2 truncate" title="2027-06-01 10:00:00">2027-06-01 10:00:00</td>
-                                            <td class="py-4 px-2 text-center">
-                                                <a href="#" class="text-[#1c7ffd] hover:underline mx-1" onclick="openDataProductDrawer()">查看</a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            
+
                             <div class="flex justify-end items-center mt-4 text-[13px] text-[#606266] gap-2 pt-4 border-t border-gray-100">
-                                <span>共 1 条</span>
+                                <span>共 6 条</span>
                                 <div class="flex items-center gap-1">
                                     <button class="w-8 h-8 flex items-center justify-center border border-gray-200 rounded text-gray-300 cursor-not-allowed"><i class="fa-solid fa-angle-left text-[10px]"></i></button>
                                     <button class="w-8 h-8 flex items-center justify-center border border-[#1c7ffd] bg-[#1c7ffd] text-white rounded">1</button>
@@ -468,6 +445,8 @@
                                 <div class="relative">
                                     <select class="h-8 px-3 border border-gray-200 rounded focus:outline-none focus:border-[#1c7ffd] appearance-none pr-6 bg-white">
                                         <option>10 条/页</option>
+                                        <option>20 条/页</option>
+                                        <option>50 条/页</option>
                                     </select>
                                     <i class="fa-solid fa-angle-down absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 text-[10px] pointer-events-none"></i>
                                 </div>
@@ -475,206 +454,215 @@
                         </div>
                     </div>
                     
-                    <div class="text-center text-xs text-[#1c7ffd] opacity-70 mt-2 shrink-0">
-                        主办单位：云上陕西科技运营有限公司
+                    <!-- 添加加工数据弹窗 -->
+                    <div id="addDataOverlay" class="fixed inset-0 bg-black bg-opacity-40 z-50 hidden items-center justify-center" onclick="closeAddDataModal()">
+                        <div class="bg-white w-[980px] max-h-[86vh] rounded-lg shadow-2xl flex flex-col overflow-hidden" onclick="event.stopPropagation()">
+                            <div class="h-14 border-b border-gray-100 flex items-center justify-between px-6 shrink-0">
+                                <span class="text-[15px] font-bold text-[#303133]">添加加工数据</span>
+                                <i class="fa-solid fa-xmark text-gray-400 cursor-pointer hover:text-[#606266] text-lg" onclick="closeAddDataModal()"></i>
+                            </div>
+
+                            <div class="flex border-b border-gray-100 px-6 shrink-0">
+                                <div id="mtab-product" class="py-3 px-2 text-[#1c7ffd] border-b-2 border-[#1c7ffd] font-medium mr-8 cursor-pointer text-[14px]" onclick="switchAddTab('product')">已授权的数据产品 (0)</div>
+                                <div id="mtab-enterprise" class="py-3 px-2 text-[#606266] hover:text-[#1c7ffd] mr-8 cursor-pointer transition-colors text-[14px]" onclick="switchAddTab('enterprise')">本企业的数据 (0)</div>
+                            </div>
+
+                            <div class="flex-1 overflow-y-auto p-6">
+                                <div id="mcontent-product" class="flex flex-col">
+                                    <div class="grid grid-cols-3 gap-4">
+                                    <div class="relative bg-white border border-gray-200 rounded-lg p-4 pr-9 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-all add-card"
+                                         data-kind="product" data-key="DP2026061001" data-name="物流配送轨迹数据0910" data-tool="离线开发底座" onclick="toggleAddCard(this)">
+                                        <div class="add-check absolute top-3 right-3 w-5 h-5 rounded-full border border-gray-300 bg-white hidden"></div>
+                                        <div class="flex items-center gap-2 min-w-0">
+                                            <span class="text-[#303133] font-bold text-[14px] truncate" title="物流配送轨迹数据0910">物流配送轨迹数据0910</span>
+                                            <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">库表</span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">提供方：永中软件股份有限公司</span>
+                                            <span class="truncate">订单编号：79132021369877928J61000000027S</span>
+                                            <span class="truncate">开发工具：离线开发底座</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="relative bg-white border border-gray-200 rounded-lg p-4 pr-9 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-all add-card"
+                                         data-kind="product" data-key="DP2026061002" data-name="产品质量检测报告数据0910" data-tool="离线开发底座" onclick="toggleAddCard(this)">
+                                        <div class="add-check absolute top-3 right-3 w-5 h-5 rounded-full border border-gray-300 bg-white hidden"></div>
+                                        <div class="flex items-center gap-2 min-w-0">
+                                            <span class="text-[#303133] font-bold text-[14px] truncate" title="产品质量检测报告数据0910">产品质量检测报告数据0910</span>
+                                            <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">库表</span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">提供方：永中软件股份有限公司</span>
+                                            <span class="truncate">订单编号：79132021369877928J61000000026U</span>
+                                            <span class="truncate">开发工具：离线开发底座</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="relative bg-white border border-gray-200 rounded-lg p-4 pr-9 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-all add-card"
+                                         data-kind="product" data-key="DP2026061501" data-name="社会链路隐私计算测试-091501" data-tool="离线开发底座" onclick="toggleAddCard(this)">
+                                        <div class="add-check absolute top-3 right-3 w-5 h-5 rounded-full border border-gray-300 bg-white hidden"></div>
+                                        <div class="flex items-center gap-2 min-w-0">
+                                            <span class="text-[#303133] font-bold text-[14px] truncate" title="社会链路隐私计算测试-091501">社会链路隐私计算测试-091501</span>
+                                            <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">库表</span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">提供方：永中软件股份有限公司</span>
+                                            <span class="truncate">订单编号：79132021369877928J61000000002LZ</span>
+                                            <span class="truncate">开发工具：离线开发底座</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="relative bg-white border border-gray-200 rounded-lg p-4 pr-9 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-all add-card"
+                                         data-kind="product" data-key="DP20260601001" data-name="人口基础信息查询接口" data-tool="离线开发底座" onclick="toggleAddCard(this)">
+                                        <div class="add-check absolute top-3 right-3 w-5 h-5 rounded-full border border-gray-300 bg-white hidden"></div>
+                                        <div class="flex items-center gap-2 min-w-0">
+                                            <span class="text-[#303133] font-bold text-[14px] truncate" title="人口基础信息查询接口">人口基础信息查询接口</span>
+                                            <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">接口</span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">提供方：陕西省公安厅</span>
+                                            <span class="truncate">订单编号：79132021369877928J61000000031K</span>
+                                            <span class="truncate">开发工具：离线开发底座</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                <div class="flex justify-end items-center mt-4 text-[13px] text-[#606266] gap-2 pt-4 border-t border-gray-100">
+                                    <span>共 4 条</span>
+                                    <div class="flex items-center gap-1">
+                                        <button class="w-8 h-8 flex items-center justify-center border border-gray-200 rounded text-gray-300 cursor-not-allowed"><i class="fa-solid fa-angle-left text-[10px]"></i></button>
+                                        <button class="w-8 h-8 flex items-center justify-center border border-[#1c7ffd] bg-[#1c7ffd] text-white rounded">1</button>
+                                        <button class="w-8 h-8 flex items-center justify-center border border-gray-200 rounded text-gray-300 cursor-not-allowed"><i class="fa-solid fa-angle-right text-[10px]"></i></button>
+                                    </div>
+                                    <div class="relative">
+                                        <select class="h-8 px-3 border border-gray-200 rounded focus:outline-none focus:border-[#1c7ffd] appearance-none pr-6 bg-white">
+                                            <option>10 条/页</option>
+                                            <option>20 条/页</option>
+                                            <option>50 条/页</option>
+                                        </select>
+                                        <i class="fa-solid fa-angle-down absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 text-[10px] pointer-events-none"></i>
+                                    </div>
+                                </div>
+                                </div>
+
+                                <div id="mcontent-enterprise" class="flex flex-col hidden">
+                                    <div class="grid grid-cols-3 gap-4">
+                                    <div class="relative bg-white border border-gray-200 rounded-lg p-4 pr-9 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-all add-card"
+                                         data-kind="enterprise" data-key="ZY2026060201" data-name="物流配送轨迹数据源" data-tool="" onclick="toggleAddCard(this)">
+                                        <div class="add-check absolute top-3 right-3 w-5 h-5 rounded-full border border-gray-300 bg-white hidden"></div>
+                                        <div class="flex items-center gap-2 min-w-0">
+                                            <span class="text-[#303133] font-bold text-[14px] truncate" title="物流配送轨迹数据源">物流配送轨迹数据源</span>
+                                            <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">库表</span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">数据源编号：ZY2026060201</span>
+                                            <span class="truncate">更新时间：2026-06-02 09:15:32</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="relative bg-white border border-gray-200 rounded-lg p-4 pr-9 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-all add-card"
+                                         data-kind="enterprise" data-key="ZY2026060101" data-name="产品质量检测报告数据源" data-tool="" onclick="toggleAddCard(this)">
+                                        <div class="add-check absolute top-3 right-3 w-5 h-5 rounded-full border border-gray-300 bg-white hidden"></div>
+                                        <div class="flex items-center gap-2 min-w-0">
+                                            <span class="text-[#303133] font-bold text-[14px] truncate" title="产品质量检测报告数据源">产品质量检测报告数据源</span>
+                                            <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">库表</span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">数据源编号：ZY2026060101</span>
+                                            <span class="truncate">更新时间：2026-06-01 18:42:10</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="relative bg-white border border-gray-200 rounded-lg p-4 pr-9 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-all add-card"
+                                         data-kind="enterprise" data-key="ZY2026060102" data-name="企业采购订单明细数据源" data-tool="" onclick="toggleAddCard(this)">
+                                        <div class="add-check absolute top-3 right-3 w-5 h-5 rounded-full border border-gray-300 bg-white hidden"></div>
+                                        <div class="flex items-center gap-2 min-w-0">
+                                            <span class="text-[#303133] font-bold text-[14px] truncate" title="企业采购订单明细数据源">企业采购订单明细数据源</span>
+                                            <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">库表</span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">数据源编号：ZY2026060102</span>
+                                            <span class="truncate">更新时间：2026-06-01 14:08:45</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="relative bg-white border border-gray-200 rounded-lg p-4 pr-9 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-all add-card"
+                                         data-kind="enterprise" data-key="ZY2026053001" data-name="供应商基础信息数据源" data-tool="" onclick="toggleAddCard(this)">
+                                        <div class="add-check absolute top-3 right-3 w-5 h-5 rounded-full border border-gray-300 bg-white hidden"></div>
+                                        <div class="flex items-center gap-2 min-w-0">
+                                            <span class="text-[#303133] font-bold text-[14px] truncate" title="供应商基础信息数据源">供应商基础信息数据源</span>
+                                            <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">库表</span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">数据源编号：ZY2026053001</span>
+                                            <span class="truncate">更新时间：2026-05-30 10:26:07</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="relative bg-white border border-gray-200 rounded-lg p-4 pr-9 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-all add-card"
+                                         data-kind="enterprise" data-key="ZY2026052901" data-name="仓库库存实时数据源" data-tool="" onclick="toggleAddCard(this)">
+                                        <div class="add-check absolute top-3 right-3 w-5 h-5 rounded-full border border-gray-300 bg-white hidden"></div>
+                                        <div class="flex items-center gap-2 min-w-0">
+                                            <span class="text-[#303133] font-bold text-[14px] truncate" title="仓库库存实时数据源">仓库库存实时数据源</span>
+                                            <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">库表</span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">数据源编号：ZY2026052901</span>
+                                            <span class="truncate">更新时间：2026-05-29 16:33:21</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="relative bg-white border border-gray-200 rounded-lg p-4 pr-9 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-all add-card"
+                                         data-kind="enterprise" data-key="JK2026052801" data-name="供应商金融信息接口" data-tool="" onclick="toggleAddCard(this)">
+                                        <div class="add-check absolute top-3 right-3 w-5 h-5 rounded-full border border-gray-300 bg-white hidden"></div>
+                                        <div class="flex items-center gap-2 min-w-0">
+                                            <span class="text-[#303133] font-bold text-[14px] truncate" title="供应商金融信息接口">供应商金融信息接口</span>
+                                            <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">接口</span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">接口编号：JK2026052801</span>
+                                            <span class="truncate">更新时间：2026-05-28 11:52:39</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                <div class="flex justify-end items-center mt-4 text-[13px] text-[#606266] gap-2 pt-4 border-t border-gray-100">
+                                    <span>共 6 条</span>
+                                    <div class="flex items-center gap-1">
+                                        <button class="w-8 h-8 flex items-center justify-center border border-gray-200 rounded text-gray-300 cursor-not-allowed"><i class="fa-solid fa-angle-left text-[10px]"></i></button>
+                                        <button class="w-8 h-8 flex items-center justify-center border border-[#1c7ffd] bg-[#1c7ffd] text-white rounded">1</button>
+                                        <button class="w-8 h-8 flex items-center justify-center border border-gray-200 rounded text-gray-300 cursor-not-allowed"><i class="fa-solid fa-angle-right text-[10px]"></i></button>
+                                    </div>
+                                    <div class="relative">
+                                        <select class="h-8 px-3 border border-gray-200 rounded focus:outline-none focus:border-[#1c7ffd] appearance-none pr-6 bg-white">
+                                            <option>10 条/页</option>
+                                            <option>20 条/页</option>
+                                            <option>50 条/页</option>
+                                        </select>
+                                        <i class="fa-solid fa-angle-down absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 text-[10px] pointer-events-none"></i>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="h-16 border-t border-gray-100 flex items-center justify-end gap-3 px-6 shrink-0">
+                                <button class="h-9 px-5 border border-gray-200 text-[#606266] text-[13px] rounded hover:text-[#1c7ffd] hover:border-[#1c7ffd] transition-colors" onclick="closeAddDataModal()">取消</button>
+                                <button class="h-9 px-5 bg-[#1c7ffd] text-white text-[13px] rounded hover:bg-[#3a8ffd] transition-colors" onclick="confirmAddData()">确定</button>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- 抽屉遮罩 -->
-                    <div id="drawerOverlay" class="fixed inset-0 bg-black bg-opacity-30 z-40 hidden transition-opacity" onclick="closeDataResourceDrawer()"></div>
-                    
-                    <!-- 资源目录详情抽屉 -->
-                    <div id="dataResourceDrawer" class="fixed top-0 right-0 h-full w-[800px] bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
-                        <div class="h-14 border-b border-gray-100 flex items-center justify-between px-6 shrink-0 bg-white">
-                            <span class="font-medium text-[#303133]">资源目录详情</span>
-                            <i class="fa-solid fa-xmark text-gray-400 cursor-pointer hover:text-[#1c7ffd] text-lg" onclick="closeDataResourceDrawer()"></i>
-                        </div>
-                        
-                        <div class="flex-1 overflow-y-auto p-6 bg-[#f5f7fa]">
-                            <div class="bg-white rounded-lg p-6 shadow-sm mb-4">
-                                <div class="flex justify-between items-start">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-10 h-10 bg-blue-50 text-[#1c7ffd] rounded-full flex items-center justify-center text-xl shrink-0">
-                                            <i class="fa-solid fa-envelope-open-text"></i>
-                                        </div>
-                                        <div>
-                                            <div class="text-[18px] font-bold text-[#303133] mb-1 flex items-center gap-2">
-                                                资源名称：企业工商数据 
-                                                <span class="bg-blue-50 text-[#1c7ffd] text-[12px] px-2 py-0.5 rounded border border-blue-100 font-normal">库表</span>
-                                            </div>
-                                            <div class="text-[#909399] text-[13px]">资源编码：PD202508140001</div>
-                                        </div>
-                                    </div>
-                                    <div class="text-right">
-                                        <div class="text-[#909399] text-[13px] mt-2">授权时间：2026-06-02 13:43:28</div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="bg-white rounded-lg shadow-sm overflow-hidden mb-4">
-                                <div class="flex border-b border-gray-100 px-6">
-                                    <div id="drawer-tab-basic" class="py-3 px-2 text-[#1c7ffd] border-b-2 border-[#1c7ffd] font-medium mr-8 cursor-pointer text-[14px]" onclick="switchDrawerTab('basic')">基本信息</div>
-                                    <div id="drawer-tab-apply" class="py-3 px-2 text-[#606266] hover:text-[#1c7ffd] mr-8 cursor-pointer transition-colors text-[14px]" onclick="switchDrawerTab('apply')">申请信息</div>
-                                    </div>
-                                
-                                <!-- 基本信息内容 -->
-                                <div id="drawer-content-basic" class="p-6">
-                                    <h3 class="font-bold border-l-2 border-[#1c7ffd] pl-2 text-[#303133] text-[15px] mb-6 leading-none">基本信息</h3>
-                                    <div class="grid grid-cols-2 gap-y-6 gap-x-12 text-[13px] mb-8 pl-4">
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4">数据资源名称</span>
-                                            <span class="text-[#303133] flex-1">这是数据资源名称</span>
-                                        </div>
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4">数据资源标识码</span>
-                                            <span class="text-[#303133] flex-1">example</span>
-                                        </div>
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4">资源格式</span>
-                                            <span class="text-[#303133] flex-1">电子表格/XLSX</span>
-                                        </div>
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4">行业分类</span>
-                                            <span class="text-[#303133] flex-1">--</span>
-                                        </div>
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4">数据来源</span>
-                                            <span class="text-[#303133] flex-1">原始取得</span>
-                                        </div>
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4">是否涉及个人信息</span>
-                                            <span class="text-[#303133] flex-1">--</span>
-                                        </div>
-                                        <div class="flex col-span-2">
-                                            <span class="text-[#909399] w-28 text-right pr-4">应用任务</span>
-                                            <span class="text-[#303133] flex-1">--</span>
-                                        </div>
-                                        <div class="flex col-span-2">
-                                            <span class="text-[#909399] w-28 text-right pr-4">资源摘要</span>
-                                            <span class="text-[#303133] flex-1">--</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- 附件信息 -->
-                                    <h3 class="font-bold border-l-2 border-[#1c7ffd] pl-2 text-[#303133] text-[15px] mb-6 leading-none mt-8">附件</h3>
-                                    <div class="grid grid-cols-2 gap-y-6 gap-x-12 text-[13px] pl-4">
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4">数据来源声明</span>
-                                            <span class="text-[#303133] flex-1">--</span>
-                                        </div>
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4">合法合规声明</span>
-                                            <span class="text-[#303133] flex-1">--</span>
-                                        </div>
-                                        <div class="flex col-span-2">
-                                            <span class="text-[#909399] w-28 text-right pr-4">其他</span>
-                                            <span class="text-[#303133] flex-1">--</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 申请信息内容 -->
-                                <div id="drawer-content-apply" class="p-6 hidden border-t border-gray-100">
-                                    <h3 class="font-bold border-l-2 border-[#1c7ffd] pl-2 text-[#303133] text-[15px] mb-6 leading-none mt-4">申请信息</h3>
-                                    <div class="grid grid-cols-2 gap-y-6 gap-x-12 text-[13px] mb-8 pl-4">
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4">提供方名称</span>
-                                            <span class="text-[#303133] flex-1">XXXXXX公司</span>
-                                        </div>
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4">联系人</span>
-                                            <span class="text-[#303133] flex-1">--</span>
-                                        </div>
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4">联系方式</span>
-                                            <span class="text-[#303133] flex-1">--</span>
-                                        </div>
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4">工单编号</span>
-                                            <span class="text-[#303133] flex-1">2015727178516242434</span>
-                                        </div>
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4">使用方名称</span>
-                                            <span class="text-[#303133] flex-1">XXXXXXX公司</span>
-                                        </div>
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4">授权起止时间</span>
-                                            <span class="text-[#303133] flex-1">2026-01-01 06:00:00 - 2027-01-01 06:00:00</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="pl-4">
-                                        <div class="flex items-start">
-                                            <span class="text-[#909399] w-28 text-right pr-4 pt-2 text-[13px]">信息项</span>
-                                            <div class="flex-1">
-                                                <table class="w-full text-left text-[13px] text-[#606266] border border-gray-200">
-                                                    <thead class="bg-[#f0f5ff] text-[#303133] font-medium border-b border-gray-200">
-                                                        <tr>
-                                                            <th class="py-2.5 px-4 w-20">序号</th>
-                                                            <th class="py-2.5 px-4">信息项名称</th>
-                                                            <th class="py-2.5 px-4">数据格式</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr class="border-b border-gray-100">
-                                                            <td class="py-3 px-4">1</td>
-                                                            <td class="py-3 px-4">名称1</td>
-                                                            <td class="py-3 px-4">对应的数据格式</td>
-                                                        </tr>
-                                                        <tr class="border-b border-gray-100">
-                                                            <td class="py-3 px-4">2</td>
-                                                            <td class="py-3 px-4">名称1</td>
-                                                            <td class="py-3 px-4">对应的数据格式</td>
-                                                        </tr>
-                                                        <tr class="border-b border-gray-100">
-                                                            <td class="py-3 px-4">3</td>
-                                                            <td class="py-3 px-4">名称1</td>
-                                                            <td class="py-3 px-4">对应的数据格式</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="pl-4 mt-8">
-                                        <h3 class="font-bold border-l-2 border-[#1c7ffd] pl-2 text-[#303133] text-[15px] mb-6 leading-none -ml-4">资源授权使用策略</h3>
-                                        <div class="flex gap-4">
-                                            <div class="border border-gray-200 rounded-lg p-4 flex-1">
-                                                <div class="font-bold text-[#303133] mb-4">限定使用环境</div>
-                                                <div class="text-[#606266] text-center mb-3">协作开发平台-数据沙箱</div>
-                                                <div class="text-[#606266] text-center">协作开发平台-隐私计算</div>
-                                            </div>
-                                            <div class="border border-gray-200 rounded-lg p-4 flex-1">
-                                                <div class="font-bold text-[#303133] mb-4">限定使用频率</div>
-                                                <div class="text-[#606266] text-center">10次/小时</div>
-                                            </div>
-                                            <div class="border border-gray-200 rounded-lg p-4 flex-1">
-                                                <div class="font-bold text-[#303133] mb-4">限定可使用字段</div>
-                                                <div class="flex justify-center gap-4 text-[#606266]">
-                                                    <span>字段名称1</span>
-                                                    <span>字段名称2</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 数据产品详情抽屉 -->
                     <div id="drawerOverlayProduct" class="fixed inset-0 bg-black bg-opacity-30 z-40 hidden transition-opacity" onclick="closeDataProductDrawer()"></div>
+
+                    <!-- 详情抽屉 -->
                     <div id="dataProductDrawer" class="fixed right-0 top-0 bottom-0 w-[900px] bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
-                        <!-- 抽屉头部 -->
                         <div class="h-14 bg-white border-b border-gray-100 flex items-center justify-between px-6 shrink-0">
                             <div class="flex items-center gap-2">
                                 <i class="fa-solid fa-arrow-right-to-bracket text-[#1c7ffd] cursor-pointer hover:bg-blue-50 p-1.5 rounded transition-colors" onclick="closeDataProductDrawer()"></i>
                                 <span class="text-[15px] font-bold text-[#303133]">我申请的产品详情</span>
                             </div>
-                            <i class="fa-solid fa-xmark text-gray-400 cursor-pointer hover:text-gray-600 text-lg" onclick="closeDataProductDrawer()"></i>
+                            <i class="fa-solid fa-xmark text-gray-400 cursor-pointer hover:text-[#606266] text-lg" onclick="closeDataProductDrawer()"></i>
                         </div>
-                        
+
                         <div class="flex-1 overflow-y-auto p-6 bg-[#f5f7fa]">
                             <div class="bg-white rounded-lg p-6 shadow-sm mb-4">
                                 <div class="flex justify-between items-start">
@@ -684,223 +672,421 @@
                                         </div>
                                         <div>
                                             <div class="text-[18px] font-bold text-[#303133] mb-1 flex items-center gap-2">
-                                                产品名称：人口基础信息查询 
-                                                <span class="bg-blue-50 text-[#1c7ffd] text-[12px] px-2 py-0.5 rounded border border-blue-100 font-normal">API</span>
+                                                <span id="dp-title-text">产品名称：--</span>
+                                                <span id="dp-tag" class="bg-blue-50 text-[#1c7ffd] text-[12px] px-2 py-0.5 rounded border border-blue-100 font-normal">库表</span>
                                             </div>
-                                            <div class="text-[#909399] text-[13px]">产品标识码：DP20260601001</div>
+                                            <div id="dp-code-text" class="text-[#909399] text-[13px]">产品标识码：--</div>
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <div class="text-[#909399] text-[13px] mt-2">授权时间：2026-06-01 10:00:00</div>
+                                        <div id="dp-auth-time" class="text-[#909399] text-[13px] mt-2">授权时间：--</div>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="bg-white rounded-lg shadow-sm overflow-hidden mb-4">
                                 <div class="flex border-b border-gray-100 px-6">
                                     <div id="product-drawer-tab-basic" class="py-3 px-2 text-[#1c7ffd] border-b-2 border-[#1c7ffd] font-medium mr-8 cursor-pointer text-[14px]" onclick="switchProductDrawerTab('basic')">基本信息</div>
                                     <div id="product-drawer-tab-order" class="py-3 px-2 text-[#606266] hover:text-[#1c7ffd] mr-8 cursor-pointer transition-colors text-[14px]" onclick="switchProductDrawerTab('order')">订单信息</div>
                                 </div>
-                                
-                                <!-- 基本信息内容 -->
+
+                                <!-- 基本信息 -->
                                 <div id="product-drawer-content-basic" class="p-6">
-                                    <h3 class="font-bold border-l-2 border-[#1c7ffd] pl-2 text-[#303133] text-[15px] mb-6 leading-none">数据产品信息</h3>
-                                    <div class="grid grid-cols-2 gap-y-6 gap-x-12 text-[13px] mb-8 pl-4">
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4 shrink-0">数据产品名称</span>
-                                            <span class="text-[#303133] flex-1">产互主体产品01</span>
+                                                                        <div id="dp-basic-api" class="hidden">
+                                        <h3 class="font-bold border-l-2 border-[#1c7ffd] pl-2 text-[#303133] text-[15px] mb-6 leading-none">基本信息</h3>
+                                        <div class="grid grid-cols-2 gap-y-6 gap-x-12 text-[13px] mb-8 pl-4">
+                                            <div class="flex">
+                                                <span id="dp-api-name-label" class="text-[#909399] w-32 text-right pr-4 shrink-0">数据产品名称</span>
+                                                <span id="dp-api-name" class="text-[#303133] flex-1">--</span>
+                                            </div>
+                                            <div class="flex">
+                                                <span class="text-[#909399] w-32 text-right pr-4 shrink-0">数据类型</span>
+                                                <span class="text-[#303133] flex-1">接口</span>
+                                            </div>
+                                            <div id="dp-api-tool-row" class="flex">
+                                                <span class="text-[#909399] w-32 text-right pr-4 shrink-0">交付方式/开发工具</span>
+                                                <span id="dp-api-tool" class="text-[#303133] flex-1">--</span>
+                                            </div>
+                                            <div class="flex">
+                                                <span class="text-[#909399] w-32 text-right pr-4 shrink-0">请求方式</span>
+                                                <span class="text-[#303133] flex-1">POST</span>
+                                            </div>
                                         </div>
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4 shrink-0">产品类型</span>
-                                            <span class="text-[#303133] flex-1">API产品</span>
+
+                                        <h3 class="font-bold border-l-2 border-[#1c7ffd] pl-2 text-[#303133] text-[15px] mb-4 leading-none">参数信息</h3>
+                                    <div class="border border-gray-200 rounded mb-4 overflow-hidden">
+                                        <div class="px-4 py-2.5 bg-[#f4f8fe] flex items-center gap-2 text-[13px] font-medium text-[#303133] cursor-pointer select-none" onclick="toggleParamSection(this)">
+                                            <i class="fa-solid fa-caret-down text-[#1c7ffd] text-[11px]"></i>
+                                            请求参数 (Headers)
                                         </div>
-                                        
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4 shrink-0">覆盖时间范围</span>
-                                            <span class="text-[#303133] flex-1">2026-05-01至2026-06-30</span>
+                                        <div class="p-4">
+                                            <div class="flex items-center text-[13px] mb-5">
+                                                <span class="text-[#909399] w-24 shrink-0">使用说明</span>
+                                                <span class="text-[#303133]">—</span>
+                                            </div>
+                                            <div class="text-[13px] font-medium text-[#303133] mb-2">参数详情</div>
+                                        <div class="border border-gray-100 rounded overflow-hidden">
+                                            <div class="grid grid-cols-4 bg-[#fafafa] text-[12px] text-[#303133] font-medium px-4 py-2">
+                                                <span>名称</span>
+                                                <span>类型</span>
+                                                <span>示例值</span>
+                                                <span>描述</span>
+                                            </div>
+                                            <div class="py-8 flex flex-col items-center text-[#c0c4cc]">
+                                                <i class="fa-regular fa-folder-open text-[26px] mb-2"></i>
+                                                <span class="text-[12px]">暂无数据</span>
+                                            </div>
                                         </div>
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4 shrink-0">行业分类</span>
-                                            <span class="text-[#303133] flex-1">采矿业</span>
                                         </div>
-                                        
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4 shrink-0">地域分类</span>
-                                            <span class="text-[#303133] flex-1">河北省</span>
+                                    </div>                                    <div class="border border-gray-200 rounded mb-4 overflow-hidden">
+                                        <div class="px-4 py-2.5 bg-[#f4f8fe] flex items-center gap-2 text-[13px] font-medium text-[#303133] cursor-pointer select-none" onclick="toggleParamSection(this)">
+                                            <i class="fa-solid fa-caret-down text-[#1c7ffd] text-[11px]"></i>
+                                            请求参数 (Query)
                                         </div>
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4 shrink-0">是否涉及个人信息</span>
-                                            <span class="text-[#303133] flex-1"><span class="px-2 py-0.5 border border-gray-200 text-gray-500 rounded text-xs">否</span></span>
+                                        <div class="p-4">
+                                            <div class="flex items-center text-[13px] mb-5">
+                                                <span class="text-[#909399] w-24 shrink-0">使用说明</span>
+                                                <span class="text-[#303133]">—</span>
+                                            </div>
+                                            <div class="text-[13px] font-medium text-[#303133] mb-2">参数详情</div>
+                                        <div class="border border-gray-100 rounded overflow-hidden">
+                                            <div class="grid grid-cols-4 bg-[#fafafa] text-[12px] text-[#303133] font-medium px-4 py-2">
+                                                <span>名称</span>
+                                                <span>类型</span>
+                                                <span>示例值</span>
+                                                <span>描述</span>
+                                            </div>
+                                            <div class="py-8 flex flex-col items-center text-[#c0c4cc]">
+                                                <i class="fa-regular fa-folder-open text-[26px] mb-2"></i>
+                                                <span class="text-[12px]">暂无数据</span>
+                                            </div>
                                         </div>
-                                        
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4 shrink-0">交付方式</span>
-                                            <span class="text-[#303133] flex-1">文件传输</span>
                                         </div>
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4 shrink-0">授权使用</span>
-                                            <span class="text-[#303133] flex-1"><span class="px-2 py-0.5 border border-green-200 text-green-500 bg-green-50 rounded text-xs">是</span></span>
+                                    </div>                                    <div class="border border-gray-200 rounded mb-4 overflow-hidden">
+                                        <div class="px-4 py-2.5 bg-[#f4f8fe] flex items-center gap-2 text-[13px] font-medium text-[#303133] cursor-pointer select-none" onclick="toggleParamSection(this)">
+                                            <i class="fa-solid fa-caret-down text-[#1c7ffd] text-[11px]"></i>
+                                            请求参数 (Body)
                                         </div>
-                                        
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4 shrink-0">数据主体</span>
-                                            <span class="text-[#303133] flex-1">企业数据</span>
+                                        <div class="p-4">
+                                            <div class="flex items-center text-[13px] mb-4">
+                                                <span class="text-[#909399] w-24 shrink-0">使用说明</span>
+                                                <span class="text-[#303133]">—</span>
+                                            </div>
+                                            <div class="flex items-center text-[13px] mb-4">
+                                                <span class="text-[#909399] w-24 shrink-0">参数类型</span>
+                                                <span class="text-[#303133]">JSON</span>
+                                            </div>
+                                            <div class="text-[13px] font-medium text-[#303133] mb-2">参数详情</div>
+                                            <div class="bg-[#f7f7f7] rounded px-4 py-3 text-[12px] text-[#c0c4cc] font-mono h-28">1</div>
                                         </div>
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4 shrink-0">数据规模</span>
-                                            <span class="text-[#303133] flex-1">10MB</span>
+                                    </div>                                    <div class="text-[13px] font-medium text-[#303133] mb-2 mt-5">输出参数</div>
+                                        <div class="border border-gray-100 rounded overflow-hidden">
+                                            <div class="grid grid-cols-4 bg-[#fafafa] text-[12px] text-[#303133] font-medium px-4 py-2">
+                                                <span>名称</span>
+                                                <span>类型</span>
+                                                <span>示例值</span>
+                                                <span>描述</span>
+                                            </div>
+                                            <div class="py-8 flex flex-col items-center text-[#c0c4cc]">
+                                                <i class="fa-regular fa-folder-open text-[26px] mb-2"></i>
+                                                <span class="text-[12px]">暂无数据</span>
+                                            </div>
                                         </div>
-                                        
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4 shrink-0">更新频率</span>
-                                            <span class="text-[#303133] flex-1">1次/天</span>
+                                    <div class="text-[13px] font-medium text-[#303133] mb-2 mt-5">请求示例</div>
+                                    <div class="bg-[#f7f7f7] rounded px-4 py-3 text-[12px] text-[#c0c4cc] font-mono h-28">1</div>
+                                    </div>
+                                    <div id="dp-basic-kb">
+                                        <h3 class="font-bold border-l-2 border-[#1c7ffd] pl-2 text-[#303133] text-[15px] mb-6 leading-none">基本信息</h3>
+                                        <div class="grid grid-cols-2 gap-y-6 gap-x-12 text-[13px] mb-8 pl-4">
+                                            <div class="flex">
+                                                <span id="dp-kb-name-label" class="text-[#909399] w-32 text-right pr-4 shrink-0">数据产品名称</span>
+                                                <span id="dp-kb-name" class="text-[#303133] flex-1">--</span>
+                                            </div>
+                                            <div class="flex">
+                                                <span class="text-[#909399] w-32 text-right pr-4 shrink-0">数据类型</span>
+                                                <span class="text-[#303133] flex-1">库表</span>
+                                            </div>
+                                            <div id="dp-kb-tool-row" class="flex">
+                                                <span class="text-[#909399] w-32 text-right pr-4 shrink-0">交付方式/开发工具</span>
+                                                <span id="dp-kb-tool" class="text-[#303133] flex-1">--</span>
+                                            </div>
                                         </div>
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4 shrink-0">提供方名称</span>
-                                            <span class="text-[#303133] flex-1">广东联通产互</span>
+
+                                        <h3 class="font-bold border-l-2 border-[#1c7ffd] pl-2 text-[#303133] text-[15px] mb-6 leading-none">数据源信息</h3>
+                                        <div class="grid grid-cols-2 gap-y-6 gap-x-12 text-[13px] mb-8 pl-4">
+                                            <div class="flex">
+                                                <span class="text-[#909399] w-32 text-right pr-4 shrink-0">数据名称</span>
+                                                <span id="dp-ds-name" class="text-[#303133] flex-1">--</span>
+                                            </div>
+                                            <div class="flex">
+                                                <span class="text-[#909399] w-32 text-right pr-4 shrink-0">数据类型</span>
+                                                <span class="text-[#303133] flex-1">库表</span>
+                                            </div>
+                                            <div class="flex">
+                                                <span class="text-[#909399] w-32 text-right pr-4 shrink-0">数据库类型</span>
+                                                <span class="text-[#303133] flex-1">MySQL</span>
+                                            </div>
+                                            <div class="flex">
+                                                <span class="text-[#909399] w-32 text-right pr-4 shrink-0">数据库地址</span>
+                                                <span class="text-[#303133] flex-1 break-all">jdbc:mysql://10.20.30.40:3306/ods_db</span>
+                                            </div>
+                                            <div class="flex">
+                                                <span class="text-[#909399] w-32 text-right pr-4 shrink-0">账号</span>
+                                                <span class="text-[#303133] flex-1">ods_reader</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span class="text-[#909399] w-32 text-right pr-4 shrink-0">密码</span>
+                                                <span id="dp-ds-pwd" class="text-[#303133] flex-1 font-mono">••••••••</span>
+                                                <i id="dp-ds-pwd-eye" class="fa-solid fa-eye text-[#909399] cursor-pointer hover:text-[#1c7ffd] text-[13px] ml-2" onclick="toggleDsPassword(this)"></i>
+                                            </div>
                                         </div>
-                                        
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4 shrink-0">提供方主体类型</span>
-                                            <span class="text-[#303133] flex-1">法人</span>
-                                        </div>
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4 shrink-0">法人经办人姓名</span>
-                                            <span class="text-[#303133] flex-1">--</span>
-                                        </div>
-                                        
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4 shrink-0">法人经办人电话</span>
-                                            <span class="text-[#303133] flex-1">--</span>
-                                        </div>
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4 shrink-0">法人经办人身份证</span>
-                                            <span class="text-[#303133] flex-1">--</span>
-                                        </div>
-                                        
-                                        <div class="flex col-span-2">
-                                            <span class="text-[#909399] w-28 text-right pr-4 shrink-0">产品简介</span>
-                                            <span class="text-[#303133] flex-1">产互主体产品01产互主体产品01产互主体产品01产互主体产品01产互主体产品01产互主体产品01</span>
-                                        </div>
-                                        <div class="flex col-span-2">
-                                            <span class="text-[#909399] w-28 text-right pr-4 shrink-0">使用限制</span>
-                                            <span class="text-[#303133] flex-1">产互主体产品01</span>
-                                        </div>
-                                        <div class="flex col-span-2">
-                                            <span class="text-[#909399] w-28 text-right pr-4 shrink-0">提供方简介</span>
-                                            <span class="text-[#303133] flex-1">产互主体产品01产互主体产品01产互主体产品01产互主体产品01</span>
-                                        </div>
-                                        <div class="flex col-span-2">
-                                            <span class="text-[#909399] w-28 text-right pr-4 shrink-0">其他扩展信息</span>
-                                            <span class="text-[#303133] flex-1">--</span>
+
+                                        <h3 class="font-bold border-l-2 border-[#1c7ffd] pl-2 text-[#303133] text-[15px] mb-4 leading-none">示例信息列表</h3>
+                                        <div class="border border-gray-200 rounded overflow-hidden">
+                                            <table class="w-full text-left text-[13px] text-[#606266]">
+                                                <thead class="bg-[#f8f8f9] text-[#909399] border-b border-gray-200">
+                                                    <tr>
+                                                        <th class="py-2.5 px-4 font-medium">名称</th>
+                                                        <th class="py-2.5 px-4 font-medium w-24">类型</th>
+                                                        <th class="py-2.5 px-4 font-medium w-52">示例值</th>
+                                                        <th class="py-2.5 px-4 font-medium w-16">长度</th>
+                                                        <th class="py-2.5 px-4 font-medium w-16">精度</th>
+                                                        <th class="py-2.5 px-4 font-medium">描述</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="border-b border-gray-100">
+                                                        <td class="py-2.5 px-4 text-[#303133]">cust_id</td>
+                                                        <td class="py-2.5 px-4">String</td>
+                                                        <td class="py-2.5 px-4">C00123</td>
+                                                        <td class="py-2.5 px-4">32</td>
+                                                        <td class="py-2.5 px-4">0</td>
+                                                        <td class="py-2.5 px-4">客户编号</td>
+                                                    </tr>
+                                                    <tr class="border-b border-gray-100">
+                                                        <td class="py-2.5 px-4 text-[#303133]">cust_name</td>
+                                                        <td class="py-2.5 px-4">String</td>
+                                                        <td class="py-2.5 px-4">西安某某科技有限公司</td>
+                                                        <td class="py-2.5 px-4">128</td>
+                                                        <td class="py-2.5 px-4">0</td>
+                                                        <td class="py-2.5 px-4">客户名称</td>
+                                                    </tr>
+                                                    <tr class="border-b border-gray-100">
+                                                        <td class="py-2.5 px-4 text-[#303133]">cert_no</td>
+                                                        <td class="py-2.5 px-4">String</td>
+                                                        <td class="py-2.5 px-4">91610100MA6XXXXX1</td>
+                                                        <td class="py-2.5 px-4">32</td>
+                                                        <td class="py-2.5 px-4">0</td>
+                                                        <td class="py-2.5 px-4">统一社会信用代码</td>
+                                                    </tr>
+                                                    <tr class="border-b border-gray-100">
+                                                        <td class="py-2.5 px-4 text-[#303133]">reg_date</td>
+                                                        <td class="py-2.5 px-4">String</td>
+                                                        <td class="py-2.5 px-4">2010-05-18</td>
+                                                        <td class="py-2.5 px-4">16</td>
+                                                        <td class="py-2.5 px-4">0</td>
+                                                        <td class="py-2.5 px-4">注册日期</td>
+                                                    </tr>
+                                                    <tr class="border-b border-gray-100">
+                                                        <td class="py-2.5 px-4 text-[#303133]">industry</td>
+                                                        <td class="py-2.5 px-4">String</td>
+                                                        <td class="py-2.5 px-4">软件和信息技术服务业</td>
+                                                        <td class="py-2.5 px-4">64</td>
+                                                        <td class="py-2.5 px-4">0</td>
+                                                        <td class="py-2.5 px-4">所属行业</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- 订单信息内容 -->
+                                <!-- 订单信息 -->
                                 <div id="product-drawer-content-order" class="p-6 hidden border-t border-gray-100">
-                                    <h3 class="font-bold border-l-2 border-[#1c7ffd] pl-2 text-[#303133] text-[15px] mb-6 leading-none mt-4">订单信息</h3>
-                                    <div class="grid grid-cols-2 gap-y-6 gap-x-12 text-[13px] mb-8 pl-4">
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4">订单编号</span>
-                                            <span class="text-[#303133] flex-1">202604291659493739926</span>
-                                        </div>
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4">使用周期</span>
-                                            <span class="text-[#303133] flex-1">12天</span>
-                                        </div>
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4">使用方联系人</span>
-                                            <span class="text-[#303133] flex-1">中石化</span>
-                                        </div>
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4">使用方联系方式</span>
-                                            <span class="text-[#303133] flex-1">13800138001</span>
-                                        </div>
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4">邮箱</span>
-                                            <span class="text-[#303133] flex-1">--</span>
-                                        </div>
-                                        <div class="flex">
-                                            <span class="text-[#909399] w-28 text-right pr-4">使用任务说明</span>
-                                            <span class="text-[#303133] flex-1">0429</span>
-                                        </div>
-                                        <div class="flex col-span-2">
-                                            <span class="text-[#909399] w-28 text-right pr-4">备注</span>
-                                            <span class="text-[#303133] flex-1">--</span>
-                                        </div>
-                                        <div class="flex col-span-2">
-                                            <span class="text-[#909399] w-28 text-right pr-4">交付方式信息</span>
-                                            <span class="text-[#303133] flex-1">--</span>
+                                    <h3 class="font-bold border-l-2 border-[#1c7ffd] pl-2 text-[#303133] text-[15px] mb-6 leading-none">订单信息</h3>
+
+                                    <div id="dp-order-block">
+                                        <div class="flex flex-col gap-5 text-[13px] pl-4">
+                                            <div class="flex">
+                                                <span class="text-[#909399] w-40 text-right pr-4 shrink-0">订单编号/交易合约标识</span>
+                                                <span id="dp-order-no" class="text-[#303133] flex-1 break-all">--</span>
+                                            </div>
+                                            <div class="flex">
+                                                <span class="text-[#909399] w-40 text-right pr-4 shrink-0">交易合约名称</span>
+                                                <span class="text-[#303133] flex-1">数据产品授权使用合约</span>
+                                            </div>
+                                            <div class="flex">
+                                                <span class="text-[#909399] w-40 text-right pr-4 shrink-0">交易合约描述</span>
+                                                <span class="text-[#303133] flex-1">用于授权使用数据产品，约定使用范围、使用期限及使用方式</span>
+                                            </div>
+                                            <div class="flex">
+                                                <span class="text-[#909399] w-40 text-right pr-4 shrink-0">交易合约生效时间</span>
+                                                <span id="dp-order-time" class="text-[#303133] flex-1">--</span>
+                                            </div>
+                                            <div class="flex">
+                                                <span class="text-[#909399] w-40 text-right pr-4 shrink-0">提供方</span>
+                                                <span id="dp-order-provider" class="text-[#303133] flex-1">--</span>
+                                            </div>
+                                            <div class="flex">
+                                                <span class="text-[#909399] w-40 text-right pr-4 shrink-0">提供方接入连接器名称</span>
+                                                <span class="text-[#303133] flex-1">西部数据交易中心连接器</span>
+                                            </div>
+                                            <div class="flex">
+                                                <span class="text-[#909399] w-40 text-right pr-4 shrink-0">提供方接入连接器标识</span>
+                                                <span class="text-[#303133] flex-1">CONN-20260601-0001</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <script>
-                        function openDataResourceDrawer() {
-                            const overlay = document.getElementById('drawerOverlay');
-                            const drawer = document.getElementById('dataResourceDrawer');
-                            overlay.classList.remove('hidden');
-                            setTimeout(() => {
-                                drawer.classList.remove('translate-x-full');
-                            }, 10);
-                        }
 
-                        function closeDataResourceDrawer() {
-                            const overlay = document.getElementById('drawerOverlay');
-                            const drawer = document.getElementById('dataResourceDrawer');
-                            drawer.classList.add('translate-x-full');
-                            setTimeout(() => {
-                                overlay.classList.add('hidden');
-                            }, 300);
-                        }
+                    <script>
+                        const TASK_DEV_TOOL = '离线开发底座';
 
                         function switchDataTab(tabName) {
                             const tabs = {
-                                'resource': document.getElementById('tab-data-resource'),
                                 'product': document.getElementById('tab-data-product'),
-                                'public-product': document.getElementById('tab-data-public-product')
+                                'enterprise': document.getElementById('tab-enterprise')
                             };
                             const contents = {
-                                'resource': document.getElementById('content-data-resource'),
                                 'product': document.getElementById('content-data-product'),
-                                'public-product': document.getElementById('content-data-public-product')
+                                'enterprise': document.getElementById('content-enterprise')
                             };
-
-                            for (let key in tabs) {
-                                if (tabs[key]) tabs[key].className = 'py-3 px-2 text-[#606266] hover:text-[#1c7ffd] mr-8 cursor-pointer transition-colors';
-                                if (contents[key]) contents[key].classList.add('hidden');
+                            for (const key in tabs) {
+                                tabs[key].className = 'py-3 px-2 text-[#606266] hover:text-[#1c7ffd] mr-8 cursor-pointer transition-colors';
+                                contents[key].classList.add('hidden');
                             }
-
-                            if (tabs[tabName]) tabs[tabName].className = 'py-3 px-2 text-[#1c7ffd] border-b-2 border-[#1c7ffd] font-medium mr-8 cursor-pointer';
-                            if (contents[tabName]) contents[tabName].classList.remove('hidden');
+                            tabs[tabName].className = 'py-3 px-2 text-[#1c7ffd] border-b-2 border-[#1c7ffd] font-medium mr-8 cursor-pointer';
+                            contents[tabName].classList.remove('hidden');
                         }
 
-                        function switchDrawerTab(tabName) {
+                        function openAddDataModal() {
+                            const overlay = document.getElementById('addDataOverlay');
+                            overlay.classList.remove('hidden');
+                            overlay.classList.add('flex');
+                            document.querySelectorAll('#addDataOverlay .add-card').forEach(card => {
+                                const isProduct = card.dataset.kind === 'product';
+                                const locked = isProduct && card.dataset.tool !== TASK_DEV_TOOL;
+                                card.dataset.locked = locked ? '1' : '0';
+                                card.classList.toggle('opacity-40', locked);
+                                card.classList.toggle('pointer-events-none', locked);
+                                if (locked) {
+                                    card.dataset.selected = '0';
+                                    card.classList.remove('border-[#1c7ffd]', 'shadow-[0_0_0_2px_rgba(28,127,253,0.12)]', 'bg-[#f5f9ff]');
+                                    card.classList.add('border-gray-200');
+                                    const check = card.querySelector('.add-check');
+                                    check.className = 'add-check absolute top-3 right-3 w-5 h-5 rounded-full border border-gray-300 bg-white hidden';
+                                    check.innerHTML = '';
+                                }
+                            });
+                            updateAddCounts();
+                        }
+
+                        function closeAddDataModal() {
+                            const overlay = document.getElementById('addDataOverlay');
+                            overlay.classList.add('hidden');
+                            overlay.classList.remove('flex');
+                        }
+
+                        function switchAddTab(tabName) {
                             const tabs = {
-                                'basic': document.getElementById('drawer-tab-basic'),
-                                'apply': document.getElementById('drawer-tab-apply'),
-                                
+                                'product': document.getElementById('mtab-product'),
+                                'enterprise': document.getElementById('mtab-enterprise')
                             };
                             const contents = {
-                                'basic': document.getElementById('drawer-content-basic'),
-                                'apply': document.getElementById('drawer-content-apply'),
-                                
+                                'product': document.getElementById('mcontent-product'),
+                                'enterprise': document.getElementById('mcontent-enterprise')
                             };
-
-                            for (let key in tabs) {
-                                if (tabs[key]) tabs[key].className = 'py-3 px-2 text-[#606266] hover:text-[#1c7ffd] mr-8 cursor-pointer transition-colors text-[14px]';
-                                if (contents[key]) contents[key].classList.add('hidden');
+                            for (const key in tabs) {
+                                tabs[key].className = 'py-3 px-2 text-[#606266] hover:text-[#1c7ffd] mr-8 cursor-pointer transition-colors text-[14px]';
+                                contents[key].classList.add('hidden');
                             }
-
-                            if (tabs[tabName]) tabs[tabName].className = 'py-3 px-2 text-[#1c7ffd] border-b-2 border-[#1c7ffd] font-medium mr-8 cursor-pointer text-[14px]';
-                            if (contents[tabName]) contents[tabName].classList.remove('hidden');
+                            tabs[tabName].className = 'py-3 px-2 text-[#1c7ffd] border-b-2 border-[#1c7ffd] font-medium mr-8 cursor-pointer text-[14px]';
+                            contents[tabName].classList.remove('hidden');
                         }
 
-                        function openDataProductDrawer() {
+                        function toggleAddCard(card) {
+                            if (card.dataset.locked === '1') return;
+                            const check = card.querySelector('.add-check');
+                            const selected = card.dataset.selected === '1';
+                            if (selected) {
+                                card.dataset.selected = '0';
+                                card.classList.remove('border-[#1c7ffd]', 'shadow-[0_0_0_2px_rgba(28,127,253,0.12)]', 'bg-[#f5f9ff]');
+                                card.classList.add('border-gray-200');
+                                check.className = 'add-check absolute top-3 right-3 w-5 h-5 rounded-full border border-gray-300 bg-white hidden';
+                                check.innerHTML = '';
+                            } else {
+                                card.dataset.selected = '1';
+                                card.classList.remove('border-gray-200');
+                                card.classList.add('border-[#1c7ffd]', 'shadow-[0_0_0_2px_rgba(28,127,253,0.12)]', 'bg-[#f5f9ff]');
+                                check.className = 'add-check absolute top-3 right-3 w-5 h-5 rounded-full bg-[#1c7ffd] text-white flex items-center justify-center shadow-sm';
+                                check.innerHTML = '<i class="fa-solid fa-check text-[10px]"></i>';
+                            }
+                            updateAddCounts();
+                        }
+
+                        function updateAddCounts() {
+                            const count = kind => document.querySelectorAll('#addDataOverlay .add-card[data-kind="' + kind + '"][data-selected="1"]').length;
+                            document.getElementById('mtab-product').textContent = '已授权的数据产品 (' + count('product') + ')';
+                            document.getElementById('mtab-enterprise').textContent = '本企业的数据 (' + count('enterprise') + ')';
+                        }
+
+                        function confirmAddData() {
+                            closeAddDataModal();
+                        }
+
+                        function toggleParamSection(header) {
+                            const body = header.nextElementSibling;
+                            const icon = header.querySelector('i');
+                            const collapsed = body.classList.toggle('hidden');
+                            icon.classList.toggle('fa-caret-down', !collapsed);
+                            icon.classList.toggle('fa-caret-right', collapsed);
+                        }
+
+                        function toggleDsPassword(icon) {
+                            const el = document.getElementById('dp-ds-pwd');
+                            const masked = el.dataset.masked !== '0';
+                            el.textContent = masked ? 'Ods@2026' : '••••••••';
+                            el.dataset.masked = masked ? '0' : '1';
+                            icon.classList.toggle('fa-eye', !masked);
+                            icon.classList.toggle('fa-eye-slash', masked);
+                        }
+
+                        function openDataProductDrawer(el) {
+                            const d = (el && el.dataset) || {};
+                            const isApi = d.type === '接口';
+
+                            const isEnterprise = d.scope === 'enterprise';
+                            document.getElementById('dp-title-text').textContent = (isApi ? '接口名称：' : (isEnterprise ? '数据名称：' : '产品名称：')) + (d.name || '--');
+                            document.getElementById('dp-tag').textContent = d.type || '库表';
+                            document.getElementById('dp-code-text').textContent = (isEnterprise ? (isApi ? '接口编号：' : '数据源编号：') : (isApi ? '接口标识码：' : '产品标识码：')) + (d.code || '--');
+                            document.getElementById('dp-auth-time').textContent = (isEnterprise ? '更新时间：' : '授权时间：') + (d.time || '--');
+
+                            document.getElementById('dp-api-tool-row').classList.toggle('hidden', isEnterprise);
+                            document.getElementById('dp-kb-tool-row').classList.toggle('hidden', isEnterprise);
+                            document.getElementById('dp-api-name-label').textContent = isEnterprise ? '接口名称' : '数据产品名称';
+                            document.getElementById('dp-kb-name-label').textContent = isEnterprise ? '数据名称' : '数据产品名称';
+                            document.getElementById('dp-order-no').textContent = d.order || '--';
+                            document.getElementById('dp-order-time').textContent = d.time || '--';
+                            document.getElementById('dp-order-provider').textContent = d.provider || '--';
+
+                            document.getElementById('dp-basic-api').classList.toggle('hidden', !isApi);
+                            document.getElementById('dp-basic-kb').classList.toggle('hidden', isApi);
+
+                            if (isApi) {
+                                document.getElementById('dp-api-name').textContent = d.name || '--';
+                                document.getElementById('dp-api-tool').textContent = isEnterprise ? '--' : (d.tool || '--');
+                            } else {
+                                document.getElementById('dp-kb-name').textContent = d.name || '--';
+                                document.getElementById('dp-kb-tool').textContent = isEnterprise ? '--' : (d.tool || '--');
+                                document.getElementById('dp-ds-name').textContent = isEnterprise ? (d.name || '--') : ((d.name || '--') + '_表');
+                            }
+
+                            switchProductDrawerTab('basic');
+                            document.getElementById('product-drawer-tab-order').classList.toggle('hidden', isEnterprise);
+
                             const overlay = document.getElementById('drawerOverlayProduct');
                             const drawer = document.getElementById('dataProductDrawer');
                             overlay.classList.remove('hidden');
@@ -917,6 +1103,8 @@
                                 overlay.classList.add('hidden');
                             }, 300);
                         }
+
+
 
                         function switchProductDrawerTab(tabName) {
                             const tabs = {
@@ -939,6 +1127,7 @@
                     </script>
                 </div>
             </div>
+
 
         </main>
     </div>

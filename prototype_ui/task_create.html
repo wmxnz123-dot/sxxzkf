@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>协作开发平台 - 创建数据加工任务</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+        input[type="date"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: pointer; }
+    </style>
+</head>
+<body class="h-screen w-screen flex flex-col overflow-hidden bg-[#f0f2f5] text-[14px] text-gray-700">
+    <!-- 顶部导航栏 -->
+    <header class="h-14 bg-[#1c7ffd] flex justify-between items-center px-6 text-white shrink-0 shadow-sm z-10">
+        <div class="flex items-center gap-2">
+            <i class="fa-brands fa-space-awesome text-2xl"></i>
+            <span class="text-lg font-medium tracking-wider ml-1">协作开发平台</span>
+        </div>
+        <div class="flex items-center gap-6">
+            <div class="relative cursor-pointer hover:text-gray-200 transition-colors" onclick="window.location.href='my_messages.html'">
+                <i class="fa-regular fa-bell text-xl"></i>
+                <span class="absolute -top-1.5 -right-2 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full border border-[#1c7ffd] leading-none">20</span>
+            </div>
+            <div class="flex items-center gap-2 cursor-pointer hover:text-gray-200 transition-colors">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=yiyun&backgroundColor=b6e3f4" alt="avatar" class="w-8 h-8 rounded-full border border-blue-300 bg-white">
+                <span>yiyun</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主体内容 -->
+    <div class="flex-1 flex overflow-hidden">
+        <!-- 左侧主菜单 -->
+        <aside class="w-[200px] bg-white border-r border-gray-200 flex flex-col py-4 shrink-0 overflow-y-auto">
+            <nav class="flex flex-col text-[#606266]" id="main-nav">
+                <a href="workbench.html" class="flex items-center px-6 py-3.5 hover:bg-gray-50 hover:text-[#1c7ffd] transition-colors nav-item" data-href="workbench.html">
+                    <i class="fa-solid fa-border-all w-6 text-center text-lg"></i>
+                    <span class="ml-2">开发工作台</span>
+                </a>
+                <a href="scene_center.html" class="flex items-center px-6 py-3.5 hover:bg-gray-50 hover:text-[#1c7ffd] transition-colors nav-item" data-href="scene_center.html,scene_detail.html,task_create.html,package_resources.html,data_resources.html">
+                    <i class="fa-regular fa-folder-open w-6 text-center text-lg"></i>
+                    <span class="ml-2">任务中心</span>
+                </a>
+
+                <!-- 开发成果准备 -->
+                <div class="flex flex-col nav-group">
+                    <div class="flex items-center justify-between px-6 py-3.5 hover:bg-gray-50 text-[#606266] hover:text-[#1c7ffd] transition-colors cursor-pointer group-header" onclick="toggleNavGroup(this)">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-code-branch w-6 text-center text-lg"></i>
+                            <span class="ml-2">开发成果准备</span>
+                        </div>
+                        <i class="fa-solid fa-caret-left text-[10px] text-gray-400 transition-transform duration-200 group-icon"></i>
+                    </div>
+                    <div class="hidden flex-col py-1 group-content">
+                        <a href="image_upload.html" class="mx-2 px-10 py-2.5 rounded-lg hover:bg-gray-50 hover:text-[#1c7ffd] transition-colors nav-item" data-href="image_upload.html">镜像上传</a>
+                        <a href="api_list.html" class="mx-2 px-10 py-2.5 rounded-lg hover:bg-gray-50 hover:text-[#1c7ffd] transition-colors mt-1 nav-item" data-href="api_list.html">API列表</a>
+                        <a href="dataset_list.html" class="mx-2 px-10 py-2.5 rounded-lg hover:bg-gray-50 hover:text-[#1c7ffd] transition-colors mt-1 nav-item" data-href="dataset_list.html">数据集列表</a>
+                    </div>
+                </div>
+
+                <!-- 部署封装 -->
+                <div class="flex flex-col nav-group">
+                    <div class="flex items-center justify-between px-6 py-3.5 hover:bg-gray-50 text-[#606266] hover:text-[#1c7ffd] transition-colors cursor-pointer group-header" onclick="toggleNavGroup(this)">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-box w-6 text-center text-lg"></i>
+                            <span class="ml-2">部署封装</span>
+                        </div>
+                        <i class="fa-solid fa-caret-left text-[10px] text-gray-400 transition-transform duration-200 group-icon"></i>
+                    </div>
+                    <div class="hidden flex-col py-1 group-content">
+                        <a href="model_deploy_list.html" class="mx-2 px-10 py-2.5 rounded-lg hover:bg-gray-50 hover:text-[#1c7ffd] transition-colors nav-item" data-href="model_deploy_list.html,model_deploy_add.html,model_deploy_add_step2.html,model_deploy_add_step3.html">模型部署申请</a>
+                        <a href="capability_pack_list.html" class="mx-2 px-10 py-2.5 rounded-lg hover:bg-gray-50 hover:text-[#1c7ffd] transition-colors mt-1 nav-item" data-href="capability_pack_list.html,capability_pack_add.html">能力封装申请</a>
+                    </div>
+                </div>
+
+                <!-- 模型管理 -->
+                <div class="flex flex-col nav-group">
+                    <div class="flex items-center justify-between px-6 py-3.5 hover:bg-gray-50 text-[#606266] hover:text-[#1c7ffd] transition-colors cursor-pointer group-header" onclick="toggleNavGroup(this)">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-cubes w-6 text-center text-lg"></i>
+                            <span class="ml-2">模型管理</span>
+                        </div>
+                        <i class="fa-solid fa-caret-left text-[10px] text-gray-400 transition-transform duration-200 group-icon"></i>
+                    </div>
+                    <div class="hidden flex-col py-1 group-content">
+                        <a href="deployed_model_list.html" class="mx-2 px-10 py-2.5 rounded-lg hover:bg-gray-50 hover:text-[#1c7ffd] transition-colors nav-item" data-href="deployed_model_list.html">已部署模型管理</a>
+                        <a href="model_change_record.html" class="mx-2 px-10 py-2.5 rounded-lg hover:bg-gray-50 hover:text-[#1c7ffd] transition-colors mt-1 nav-item" data-href="model_change_record.html">模型变更记录</a>
+                        <a href="offline_model_list.html" class="mx-2 px-10 py-2.5 rounded-lg hover:bg-gray-50 hover:text-[#1c7ffd] transition-colors mt-1 nav-item" data-href="offline_model_list.html">已下线模型</a>
+                    </div>
+                </div>
+
+                <a href="capability_management.html" class="flex items-center justify-between px-6 py-3.5 hover:bg-gray-50 hover:text-[#1c7ffd] transition-colors nav-item" data-href="capability_management.html">
+                    <div class="flex items-center">
+                        <i class="fa-solid fa-layer-group w-6 text-center text-lg"></i>
+                        <span class="ml-2">能力管理</span>
+                    </div>
+                </a>
+
+                <!-- 产品发布 -->
+                <div class="flex flex-col nav-group">
+                    <div class="flex items-center justify-between px-6 py-3.5 hover:bg-gray-50 text-[#606266] hover:text-[#1c7ffd] transition-colors cursor-pointer group-header" onclick="toggleNavGroup(this)">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-clipboard-check w-6 text-center text-lg"></i>
+                            <span class="ml-2">产品发布</span>
+                        </div>
+                        <i class="fa-solid fa-caret-left text-[10px] text-gray-400 transition-transform duration-200 group-icon"></i>
+                    </div>
+                    <div class="hidden flex-col py-1 group-content">
+                        <a href="product_release.html" class="mx-2 px-10 py-2.5 rounded-lg hover:bg-gray-50 hover:text-[#1c7ffd] transition-colors nav-item" data-href="product_release.html,product_release_add.html">产品发布</a>
+                        <a href="published_product_list.html" class="mx-2 px-10 py-2.5 rounded-lg hover:bg-gray-50 hover:text-[#1c7ffd] transition-colors mt-1 nav-item" data-href="published_product_list.html">已发布产品管理</a>
+                        <a href="offline_product_list.html" class="mx-2 px-10 py-2.5 rounded-lg hover:bg-gray-50 hover:text-[#1c7ffd] transition-colors mt-1 nav-item" data-href="offline_product_list.html">已下线产品</a>
+                    </div>
+                </div>
+
+                <!-- 资源中心 -->
+                <div class="flex flex-col nav-group">
+                    <div class="flex items-center justify-between px-6 py-3.5 hover:bg-gray-50 text-[#606266] hover:text-[#1c7ffd] transition-colors cursor-pointer group-header" onclick="toggleNavGroup(this)">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-server w-6 text-center text-lg"></i>
+                            <span class="ml-2">资源中心</span>
+                        </div>
+                        <i class="fa-solid fa-caret-left text-[10px] text-gray-400 transition-transform duration-200 group-icon"></i>
+                    </div>
+                    <div class="hidden flex-col py-1 group-content">
+                        <a href="my_front_db.html" class="mx-2 px-10 py-2.5 rounded-lg hover:bg-gray-50 hover:text-[#1c7ffd] transition-colors nav-item" data-href="my_front_db.html">我的前置库</a>
+                    </div>
+                </div>
+
+                <a href="help_center.html" class="flex items-center justify-between px-6 py-3.5 hover:bg-gray-50 hover:text-[#1c7ffd] transition-colors nav-item" data-href="help_center.html">
+                    <div class="flex items-center">
+                        <i class="fa-regular fa-circle-question w-6 text-center text-lg"></i>
+                        <span class="ml-2">帮助中心</span>
+                    </div>
+                </a>
+
+                <!-- 消息中心 -->
+                <div class="flex flex-col nav-group">
+                    <div class="flex items-center justify-between px-6 py-3.5 hover:bg-gray-50 text-[#606266] hover:text-[#1c7ffd] transition-colors cursor-pointer group-header" onclick="toggleNavGroup(this)">
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-bullhorn w-6 text-center text-lg"></i>
+                            <span class="ml-2">消息中心</span>
+                        </div>
+                        <i class="fa-solid fa-caret-left text-[10px] text-gray-400 transition-transform duration-200 group-icon"></i>
+                    </div>
+                    <div class="hidden flex-col py-1 group-content">
+                        <a href="my_messages.html" class="mx-2 px-10 py-2.5 rounded-lg hover:bg-gray-50 hover:text-[#1c7ffd] transition-colors nav-item" data-href="my_messages.html">我的消息</a>
+                        <a href="alert_messages.html" class="mx-2 px-10 py-2.5 rounded-lg hover:bg-gray-50 hover:text-[#1c7ffd] transition-colors mt-1 nav-item" data-href="alert_messages.html">告警消息</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        <script>
+            // 侧边栏菜单交互逻辑
+            function toggleNavGroup(element) {
+                const content = element.nextElementSibling;
+                const icon = element.querySelector('.group-icon');
+
+                content.classList.toggle('hidden');
+                content.classList.toggle('flex');
+                icon.classList.toggle('-rotate-90');
+
+                if (!content.classList.contains('hidden')) {
+                    element.classList.add('text-[#1c7ffd]');
+                    element.querySelector('.ml-2').classList.add('font-medium');
+                } else {
+                    const hasActiveChild = content.querySelector('.bg-blue-50');
+                    if (!hasActiveChild) {
+                        element.classList.remove('text-[#1c7ffd]');
+                        element.querySelector('.ml-2').classList.remove('font-medium');
+                    }
+                }
+            }
+
+            // 初始化菜单高亮
+            document.addEventListener('DOMContentLoaded', () => {
+                const currentPath = window.location.pathname.split('/').pop() || 'workbench.html';
+                const navItems = document.querySelectorAll('.nav-item');
+
+                navItems.forEach(item => {
+                    const hrefs = item.getAttribute('data-href').split(',');
+                    if (hrefs.includes(currentPath)) {
+                        if (item.parentElement.id === 'main-nav') {
+                            item.classList.add('bg-blue-50', 'text-[#1c7ffd]', 'font-medium', 'border-r-2', 'border-[#1c7ffd]');
+                            item.classList.remove('text-[#606266]');
+                        } else {
+                            item.classList.add('bg-blue-50', 'text-[#1c7ffd]', 'font-medium');
+
+                            const groupContent = item.closest('.group-content');
+                            const groupHeader = groupContent.previousElementSibling;
+                            const groupIcon = groupHeader.querySelector('.group-icon');
+
+                            groupContent.classList.remove('hidden');
+                            groupContent.classList.add('flex');
+                            groupIcon.classList.add('-rotate-90');
+
+                            groupHeader.classList.add('text-[#1c7ffd]');
+                            groupHeader.querySelector('.ml-2').classList.add('font-medium');
+                        }
+                    }
+                });
+            });
+        </script>
+
+        <!-- 右侧内容区 -->
+        <main class="flex-1 flex flex-col overflow-hidden relative">
+            <!-- 核心内容容器 -->
+            <div class="flex-1 flex flex-col overflow-hidden bg-white">
+                    <!-- 标题 -->
+                    <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between shrink-0">
+                        <span class="text-[16px] font-bold text-[#303133]">创建数据加工任务</span>
+                        <a href="scene_center.html" class="text-gray-400 hover:text-[#606266] transition-colors cursor-pointer">
+                            <i class="fa-solid fa-xmark text-lg"></i>
+                        </a>
+                    </div>
+
+                    <!-- 步骤条 -->
+                    <div class="py-7 px-20 shrink-0">
+                        <div class="flex items-center justify-between relative">
+                            <div id="line1" class="absolute left-[12%] right-[52%] h-[1px] bg-gray-200 top-1/2 -translate-y-1/2 z-0"></div>
+                            <div id="line2" class="absolute left-[48%] right-[12%] h-[1px] bg-gray-200 top-1/2 -translate-y-1/2 z-0"></div>
+
+                            <div class="relative z-10 flex items-center bg-white px-2" data-step="1">
+                                <div class="step-circle w-8 h-8 rounded-full bg-[#1c7ffd] text-white flex items-center justify-center font-bold shadow-sm">1</div>
+                                <span class="step-label ml-3 text-[#303133] font-medium">填写基本信息</span>
+                            </div>
+
+                            <div class="relative z-10 flex items-center bg-white px-2" data-step="2">
+                                <div class="step-circle w-8 h-8 rounded-full border border-gray-300 text-gray-400 bg-white flex items-center justify-center font-bold">2</div>
+                                <span class="step-label ml-3 text-gray-400">添加加工数据</span>
+                            </div>
+
+                            <div class="relative z-10 flex items-center bg-white px-2" data-step="3">
+                                <div class="step-circle w-8 h-8 rounded-full border border-gray-300 text-gray-400 bg-white flex items-center justify-center font-bold">3</div>
+                                <span class="step-label ml-3 text-gray-400">配置开发环境</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 内容区 -->
+                    <div class="flex-1 overflow-y-auto overflow-x-hidden px-6 pb-6">
+
+                        <!-- 第一步：填写基本信息 -->
+                        <div class="step-panel" data-panel="1">
+                            <div class="w-full max-w-[700px] mx-auto flex flex-col gap-5 pt-2">
+                                <div class="flex items-center">
+                                    <label class="w-[120px] text-right shrink-0 text-[#606266]"><span class="text-red-500 mr-1">*</span>任务名称</label>
+                                    <input type="text" placeholder="请输入" class="ml-4 flex-1 border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-[#1c7ffd] placeholder-gray-300">
+                                </div>
+
+                                <div class="flex items-center">
+                                    <label class="w-[120px] text-right shrink-0 text-[#606266]"><span class="text-red-500 mr-1">*</span>任务截止日期</label>
+                                    <input type="date" placeholder="请选择日期" class="ml-4 flex-1 border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-[#1c7ffd] text-gray-400">
+                                </div>
+
+                                <div class="flex items-start">
+                                    <label class="w-[120px] text-right shrink-0 text-[#606266] pt-1.5">上传附件</label>
+                                    <div class="ml-4 flex flex-col gap-2">
+                                        <button class="border border-gray-300 rounded px-4 py-1.5 text-sm w-fit hover:border-[#1c7ffd] hover:text-[#1c7ffd] transition-colors bg-white shadow-sm">
+                                            <i class="fa-solid fa-arrow-up-from-bracket mr-1"></i> 上传
+                                        </button>
+                                        <span class="text-[#909399] text-[13px]">请上传不超过10MB的doc、pdf格式文件</span>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start">
+                                    <label class="w-[120px] text-right shrink-0 text-[#606266] pt-2">任务描述</label>
+                                    <textarea rows="4" placeholder="请输入" class="ml-4 flex-1 border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-[#1c7ffd] placeholder-gray-300 resize-none"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 第三步：配置开发环境 -->
+                        <div class="step-panel hidden" data-panel="3">
+                            <div class="w-full max-w-[900px] mx-auto flex flex-col gap-5 pt-2">
+                                <!-- 工具配置 -->
+                                <div class="flex flex-col gap-3">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-[3px] h-[15px] bg-[#1c7ffd] rounded"></div>
+                                        <span class="text-[#303133] font-bold">工具配置</span>
+                                    </div>
+
+                                    <div class="flex items-center">
+                                        <label class="w-[120px] text-right shrink-0 text-[#606266]">开发底座</label>
+                                        <div class="ml-4 flex flex-wrap items-center gap-x-8 gap-y-3">
+                                            <label class="dev-base-item flex items-center gap-1.5 cursor-pointer" data-base="offline">
+                                                <input type="checkbox" checked class="dev-base w-4 h-4 accent-[#1c7ffd] cursor-pointer" value="offline" onchange="toggleDevBase(this)">
+                                                <span class="text-[#606266]">离线开发底座</span>
+                                            </label>
+                                            <label class="dev-base-item flex items-center gap-1.5 cursor-pointer" data-base="online">
+                                                <input type="checkbox" class="dev-base w-4 h-4 accent-[#1c7ffd] cursor-pointer" value="online" onchange="toggleDevBase(this)">
+                                                <span class="text-[#606266]">在线开发底座</span>
+                                            </label>
+                                            <label class="dev-base-item flex items-center gap-1.5 cursor-pointer" data-base="privacy">
+                                                <input type="checkbox" class="dev-base w-4 h-4 accent-[#1c7ffd] cursor-pointer" value="privacy" onchange="toggleDevBase(this)">
+                                                <span class="text-[#606266]">隐私计算平台</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 开发底座 Tab -->
+                                <div id="dev-tab-bar" class="border-b border-gray-200">
+                                    <div class="flex items-center">
+                                        <div class="dev-tab px-1 pb-3 mr-8 border-b-2 border-[#1c7ffd] text-[#1c7ffd] font-medium cursor-pointer transition-colors" data-tab="offline" onclick="switchDevTab(this)">离线开发底座</div>
+                                        <div class="dev-tab hidden px-1 pb-3 mr-8 text-[#606266] cursor-pointer hover:text-[#1c7ffd] transition-colors" data-tab="online" onclick="switchDevTab(this)">在线开发底座</div>
+                                        <div class="dev-tab hidden px-1 pb-3 mr-8 text-[#606266] cursor-pointer hover:text-[#1c7ffd] transition-colors" data-tab="privacy" onclick="switchDevTab(this)">隐私计算平台</div>
+                                    </div>
+                                </div>
+
+                                <!-- 离线开发底座 -->
+                                <div class="dev-panel flex flex-col gap-3" data-panel-tab="offline">
+                                    <span class="text-[#303133] font-bold">工具类</span>
+                                    <div class="grid grid-cols-2 gap-5">
+                                        <div class="tool-card bg-white border-2 border-[#1c7ffd] rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer transition-colors" onclick="selectTool(this)">
+                                            <div class="flex items-start justify-between gap-3">
+                                                <span class="text-[#303133] font-bold text-[14px] truncate" title="离线镜像部署（小）">离线镜像部署（小）</span>
+                                                <span class="tool-dot w-4 h-4 rounded-full bg-[#1c7ffd] text-white flex items-center justify-center shrink-0 mt-0.5">
+                                                    <i class="fa-solid fa-check text-[9px]"></i>
+                                                </span>
+                                            </div>
+                                            <span class="text-[#909399] text-[12px]">为您提供优质的资源服务</span>
+                                            <span class="text-[#606266] text-[12px] mt-1">套餐内容包含：</span>
+                                            <div class="grid grid-cols-2 gap-3">
+                                                <div class="bg-[#f5f7fa] rounded py-2.5 text-center flex flex-col gap-0.5">
+                                                    <span class="text-[#1c7ffd] text-[14px] font-medium">5个</span>
+                                                    <span class="text-[#909399] text-[12px]">离线镜像包（小）</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 在线开发底座 -->
+                                <div class="dev-panel hidden flex-col gap-5" data-panel-tab="online">
+                                    <div class="flex flex-col gap-3">
+                                        <span class="text-[#303133] font-bold">工具类</span>
+                                        <div class="grid grid-cols-2 gap-5">
+                                            <div class="tool-card bg-white border-2 border-[#1c7ffd] rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer transition-colors" onclick="selectTool(this)">
+                                                <div class="flex items-start justify-between gap-3">
+                                                    <span class="text-[#303133] font-bold text-[14px] truncate" title="套餐A">套餐A</span>
+                                                    <span class="tool-dot w-4 h-4 rounded-full bg-[#1c7ffd] text-white flex items-center justify-center shrink-0 mt-0.5">
+                                                        <i class="fa-solid fa-check text-[9px]"></i>
+                                                    </span>
+                                                </div>
+                                                <span class="text-[#909399] text-[12px]">为您提供优质的资源服务</span>
+                                                <span class="text-[#606266] text-[12px] mt-1">套餐内容包含：</span>
+                                                <div class="grid grid-cols-2 gap-3">
+                                                    <div class="bg-[#f5f7fa] rounded py-2.5 text-center flex flex-col gap-0.5">
+                                                        <span class="text-[#1c7ffd] text-[14px] font-medium">10个任务</span>
+                                                        <span class="text-[#909399] text-[12px]">数据加工（小）</span>
+                                                    </div>
+                                                    <div class="bg-[#f5f7fa] rounded py-2.5 text-center flex flex-col gap-0.5">
+                                                        <span class="text-[#1c7ffd] text-[14px] font-medium">10个API</span>
+                                                        <span class="text-[#909399] text-[12px]">API开发（小）</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-col gap-3">
+                                        <span class="text-[#303133] font-bold">存算类</span>
+                                        <div class="grid grid-cols-2 gap-5">
+                                            <div class="tool-card bg-white border-2 border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd]/40 transition-colors" onclick="selectTool(this)">
+                                                <div class="flex items-start justify-between gap-3">
+                                                    <span class="text-[#303133] font-bold text-[14px] truncate" title="套餐A">套餐A</span>
+                                                    <span class="tool-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
+                                                </div>
+                                                <span class="text-[#909399] text-[12px]">为您提供优质的资源服务</span>
+                                                <span class="text-[#606266] text-[12px] mt-1">套餐内容包含：</span>
+                                                <div class="grid grid-cols-2 gap-3">
+                                                    <div class="bg-[#f5f7fa] rounded py-2.5 text-center flex flex-col gap-0.5">
+                                                        <span class="text-[#1c7ffd] text-[14px] font-medium">50GB存储</span>
+                                                        <span class="text-[#909399] text-[12px]">离线处理引擎（小）</span>
+                                                    </div>
+                                                    <div class="bg-[#f5f7fa] rounded py-2.5 text-center flex flex-col gap-0.5">
+                                                        <span class="text-[#1c7ffd] text-[14px] font-medium">50GB存储</span>
+                                                        <span class="text-[#909399] text-[12px]">关系型数据库（小）</span>
+                                                    </div>
+                                                    <div class="bg-[#f5f7fa] rounded py-2.5 text-center flex flex-col gap-0.5">
+                                                        <span class="text-[#1c7ffd] text-[14px] font-medium">50GB存储</span>
+                                                        <span class="text-[#909399] text-[12px]">OLAP分析引擎（小）</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 隐私计算平台 -->
+                                <div class="dev-panel hidden flex-col gap-3" data-panel-tab="privacy">
+                                    <span class="text-[#303133] font-bold">工具类</span>
+                                    <div class="grid grid-cols-2 gap-5">
+                                        <div class="tool-card bg-white border-2 border-[#1c7ffd] rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer transition-colors" onclick="selectTool(this)">
+                                            <div class="flex items-start justify-between gap-3">
+                                                <span class="text-[#303133] font-bold text-[14px] truncate" title="隐私计算画布低代码开发（小）">隐私计算画布低代码开发（小）</span>
+                                                <span class="tool-dot w-4 h-4 rounded-full bg-[#1c7ffd] text-white flex items-center justify-center shrink-0 mt-0.5">
+                                                    <i class="fa-solid fa-check text-[9px]"></i>
+                                                </span>
+                                            </div>
+                                            <span class="text-[#909399] text-[12px]">为您提供优质的资源服务</span>
+                                            <span class="text-[#606266] text-[12px] mt-1">套餐内容包含：</span>
+                                            <div class="grid grid-cols-2 gap-3">
+                                                <div class="bg-[#f5f7fa] rounded py-2.5 text-center flex flex-col gap-0.5">
+                                                    <span class="text-[#1c7ffd] text-[14px] font-medium">3个</span>
+                                                    <span class="text-[#909399] text-[12px]">训练流画布数（小）</span>
+                                                </div>
+                                                <div class="bg-[#f5f7fa] rounded py-2.5 text-center flex flex-col gap-0.5">
+                                                    <span class="text-[#1c7ffd] text-[14px] font-medium">100次</span>
+                                                    <span class="text-[#909399] text-[12px]">画布任务次数（小）</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="tool-card bg-white border-2 border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd]/40 transition-colors" onclick="selectTool(this)">
+                                            <div class="flex items-start justify-between gap-3">
+                                                <span class="text-[#303133] font-bold text-[14px] truncate" title="隐私计算画布低代码开发（大）">隐私计算画布低代码开发（大）</span>
+                                                <span class="tool-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
+                                            </div>
+                                            <span class="text-[#909399] text-[12px]">为您提供优质的资源服务</span>
+                                            <span class="text-[#606266] text-[12px] mt-1">套餐内容包含：</span>
+                                            <div class="grid grid-cols-2 gap-3">
+                                                <div class="bg-[#f5f7fa] rounded py-2.5 text-center flex flex-col gap-0.5">
+                                                    <span class="text-[#1c7ffd] text-[14px] font-medium">10个</span>
+                                                    <span class="text-[#909399] text-[12px]">训练流画布数（大）</span>
+                                                </div>
+                                                <div class="bg-[#f5f7fa] rounded py-2.5 text-center flex flex-col gap-0.5">
+                                                    <span class="text-[#1c7ffd] text-[14px] font-medium">1000次</span>
+                                                    <span class="text-[#909399] text-[12px]">画布任务次数（大）</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="tool-card bg-white border-2 border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd]/40 transition-colors" onclick="selectTool(this)">
+                                            <div class="flex items-start justify-between gap-3">
+                                                <span class="text-[#303133] font-bold text-[14px] truncate" title="隐私计算IDE编码开发（小）">隐私计算IDE编码开发（小）</span>
+                                                <span class="tool-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
+                                            </div>
+                                            <span class="text-[#909399] text-[12px]">为您提供优质的资源服务</span>
+                                            <span class="text-[#606266] text-[12px] mt-1">套餐内容包含：</span>
+                                            <div class="grid grid-cols-2 gap-3">
+                                                <div class="bg-[#f5f7fa] rounded py-2.5 text-center flex flex-col gap-0.5">
+                                                    <span class="text-[#1c7ffd] text-[14px] font-medium">100次</span>
+                                                    <span class="text-[#909399] text-[12px]">SQL分析任务次数（小）</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="tool-card bg-white border-2 border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd]/40 transition-colors" onclick="selectTool(this)">
+                                            <div class="flex items-start justify-between gap-3">
+                                                <span class="text-[#303133] font-bold text-[14px] truncate" title="隐私计算IDE编码开发（大）">隐私计算IDE编码开发（大）</span>
+                                                <span class="tool-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
+                                            </div>
+                                            <span class="text-[#909399] text-[12px]">为您提供优质的资源服务</span>
+                                            <span class="text-[#606266] text-[12px] mt-1">套餐内容包含：</span>
+                                            <div class="grid grid-cols-2 gap-3">
+                                                <div class="bg-[#f5f7fa] rounded py-2.5 text-center flex flex-col gap-0.5">
+                                                    <span class="text-[#1c7ffd] text-[14px] font-medium">1000次</span>
+                                                    <span class="text-[#909399] text-[12px]">SQL分析任务次数（大）</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 第二步：添加加工数据 -->
+                        <div class="step-panel hidden" data-panel="2">
+                            <div class="flex flex-col gap-4 pt-2">
+                                <!-- Tab 与统计 -->
+                                <div class="flex flex-wrap items-center border-b border-gray-200">
+                                    <div class="data-tab px-1 pb-3 mr-8 border-b-2 border-[#1c7ffd] text-[#1c7ffd] font-medium cursor-pointer whitespace-nowrap transition-colors" data-tab="auth" onclick="switchDataTab(this)">已授权的数据产品 <span id="auth-count">(0)</span></div>
+                                    <div class="data-tab px-1 pb-3 mr-8 text-[#606266] cursor-pointer hover:text-[#1c7ffd] transition-colors whitespace-nowrap" data-tab="enterprise" onclick="switchDataTab(this)">本企业的数据 <span id="ent-count">(0)</span></div>
+                                </div>
+
+                                <!-- 已授权的数据产品 -->
+                                <div class="data-panel flex flex-col gap-3" data-panel-tab="auth">
+                                <div id="resource-list" class="grid grid-cols-3 gap-4 pb-2">
+                                    <!-- 资源卡片 1 -->
+                                    <div class="resource-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-tool="offline" onclick="toggleResource(this)">
+                                        <div class="flex items-start justify-between gap-2">
+                                            <div class="flex items-center gap-2 min-w-0">
+                                                <span class="text-[#303133] font-bold text-[14px] truncate" title="物流配送轨迹数据0910">物流配送轨迹数据0910</span>
+                                                <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">数据库表</span>
+                                            </div>
+                                            <span class="res-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">提供方：永中软件股份有限公司</span>
+                                            <span class="truncate">订单编号：79132021369877928J61000000027S</span>
+                                            <span>开发工具：离线开发底座</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- 资源卡片 2 -->
+                                    <div class="resource-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-tool="offline" onclick="toggleResource(this)">
+                                        <div class="flex items-start justify-between gap-2">
+                                            <div class="flex items-center gap-2 min-w-0">
+                                                <span class="text-[#303133] font-bold text-[14px] truncate" title="产品质量检测报告数据0910">产品质量检测报告数据0910</span>
+                                                <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">数据库表</span>
+                                            </div>
+                                            <span class="res-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">提供方：永中软件股份有限公司</span>
+                                            <span class="truncate">订单编号：79132021369877928J61000000026U</span>
+                                            <span>开发工具：离线开发底座</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- 资源卡片 3 -->
+                                    <div class="resource-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-tool="offline" onclick="toggleResource(this)">
+                                        <div class="flex items-start justify-between gap-2">
+                                            <div class="flex items-center gap-2 min-w-0">
+                                                <span class="text-[#303133] font-bold text-[14px] truncate" title="企业采购订单明细数据0910">企业采购订单明细数据0910</span>
+                                                <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">数据库表</span>
+                                            </div>
+                                            <span class="res-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">提供方：永中软件股份有限公司</span>
+                                            <span class="truncate">订单编号：79132021369877928J6100000002AM</span>
+                                            <span>开发工具：离线开发底座</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- 资源卡片 4 -->
+                                    <div class="resource-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-tool="offline" onclick="toggleResource(this)">
+                                        <div class="flex items-start justify-between gap-2">
+                                            <div class="flex items-center gap-2 min-w-0">
+                                                <span class="text-[#303133] font-bold text-[14px] truncate" title="供应商基础信息及资质数据0910">供应商基础信息及资质数据0910</span>
+                                                <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">数据库表</span>
+                                            </div>
+                                            <span class="res-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">提供方：永中软件股份有限公司</span>
+                                            <span class="truncate">订单编号：79132021369877928J61000000029O</span>
+                                            <span>开发工具：离线开发底座</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- 资源卡片 5 -->
+                                    <div class="resource-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-tool="offline" onclick="toggleResource(this)">
+                                        <div class="flex items-start justify-between gap-2">
+                                            <div class="flex items-center gap-2 min-w-0">
+                                                <span class="text-[#303133] font-bold text-[14px] truncate" title="仓库库存实时数据0910">仓库库存实时数据0910</span>
+                                                <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">数据库表</span>
+                                            </div>
+                                            <span class="res-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">提供方：永中软件股份有限公司</span>
+                                            <span class="truncate">订单编号：79132021369877928J61000000028Q</span>
+                                            <span>开发工具：离线开发底座</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- 资源卡片 6 -->
+                                    <div class="resource-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-tool="online" onclick="toggleResource(this)">
+                                        <div class="flex items-start justify-between gap-2">
+                                            <div class="flex items-center gap-2 min-w-0">
+                                                <span class="text-[#303133] font-bold text-[14px] truncate" title="供应商金融信息">供应商金融信息</span>
+                                                <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">数据库表</span>
+                                            </div>
+                                            <span class="res-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">提供方：永中软件股份有限公司</span>
+                                            <span class="truncate">订单编号：79132021369877928J61000000008EP</span>
+                                            <span>开发工具：在线开发底座</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- 资源卡片 7 -->
+                                    <div class="resource-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-tool="online" onclick="toggleResource(this)">
+                                        <div class="flex items-start justify-between gap-2">
+                                            <div class="flex items-center gap-2 min-w-0">
+                                                <span class="text-[#303133] font-bold text-[14px] truncate" title="资源登记测试-1013-1">资源登记测试-1013-1</span>
+                                                <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">API</span>
+                                            </div>
+                                            <span class="res-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">提供方：永中软件股份有限公司</span>
+                                            <span class="truncate">订单编号：79132021369877928J61000000007JJ</span>
+                                            <span>开发工具：在线开发底座</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- 资源卡片 8 -->
+                                    <div class="resource-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-tool="privacy" onclick="toggleResource(this)">
+                                        <div class="flex items-start justify-between gap-2">
+                                            <div class="flex items-center gap-2 min-w-0">
+                                                <span class="text-[#303133] font-bold text-[14px] truncate" title="资源登记0922_01">资源登记0922_01</span>
+                                                <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">数据库表</span>
+                                            </div>
+                                            <span class="res-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">提供方：永中软件股份有限公司</span>
+                                            <span class="truncate">订单编号：79132021369877928J61000000006XW</span>
+                                            <span>开发工具：隐私计算平台</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- 资源卡片 9 -->
+                                    <div class="resource-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-tool="privacy" onclick="toggleResource(this)">
+                                        <div class="flex items-start justify-between gap-2">
+                                            <div class="flex items-center gap-2 min-w-0">
+                                                <span class="text-[#303133] font-bold text-[14px] truncate" title="社会链路隐私计算测试-091501">社会链路隐私计算测试-091501</span>
+                                                <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">数据库表</span>
+                                            </div>
+                                            <span class="res-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
+                                        </div>
+                                        <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                            <span class="truncate">提供方：永中软件股份有限公司</span>
+                                            <span class="truncate">订单编号：79132021369877928J61000000002LZ</span>
+                                            <span>开发工具：隐私计算平台</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 页码 -->
+                                <div class="flex justify-end items-center gap-2 text-[#606266] text-[13px]">
+                                    <span class="mr-1">共 9 条</span>
+                                    <button class="w-7 h-7 border border-gray-200 rounded flex items-center justify-center text-gray-400 hover:text-[#1c7ffd] hover:border-[#1c7ffd] bg-white transition-colors">
+                                        <i class="fa-solid fa-chevron-left text-xs"></i>
+                                    </button>
+                                    <button class="w-7 h-7 border border-[#1c7ffd] bg-[#1c7ffd] text-white rounded flex items-center justify-center shadow-sm">1</button>
+                                    <button class="w-7 h-7 border border-gray-200 rounded flex items-center justify-center text-gray-400 hover:text-[#1c7ffd] hover:border-[#1c7ffd] bg-white transition-colors">
+                                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                                    </button>
+                                    <div class="relative ml-2">
+                                        <select class="border border-gray-200 rounded px-3 py-1 pr-6 appearance-none focus:outline-none focus:border-[#1c7ffd] bg-white cursor-pointer hover:border-gray-300 transition-colors text-[13px]">
+                                            <option>10 条/页</option>
+                                            <option>20 条/页</option>
+                                            <option>50 条/页</option>
+                                        </select>
+                                        <i class="fa-solid fa-chevron-down absolute right-2 top-1/2 -translate-y-1/2 text-[10px] text-gray-400 pointer-events-none"></i>
+                                    </div>
+                                </div>
+                                </div>
+
+                                <!-- 本企业的数据 -->
+                                <div class="data-panel hidden flex-col gap-3" data-panel-tab="enterprise">
+                                    <div id="ent-list" class="grid grid-cols-3 gap-4 pb-2">
+                                        <!-- 数据卡片 1 -->
+                                        <div class="ent-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-selected="0" onclick="toggleEnt(this)">
+                                            <div class="flex items-start justify-between gap-2">
+                                                <div class="flex items-center gap-2 min-w-0">
+                                                    <span class="text-[#303133] font-bold text-[14px] truncate" title="物流配送轨迹数据源">物流配送轨迹数据源</span>
+                                                    <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">数据库表</span>
+                                                </div>
+                                                <span class="ent-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
+                                            </div>
+                                            <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                                <span class="truncate">数据源编号：ZY2026060201</span>
+                                                <span>更新时间：2026-06-02 09:15:32</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- 数据卡片 2 -->
+                                        <div class="ent-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-selected="0" onclick="toggleEnt(this)">
+                                            <div class="flex items-start justify-between gap-2">
+                                                <div class="flex items-center gap-2 min-w-0">
+                                                    <span class="text-[#303133] font-bold text-[14px] truncate" title="产品质量检测报告数据源">产品质量检测报告数据源</span>
+                                                    <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">数据库表</span>
+                                                </div>
+                                                <span class="ent-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
+                                            </div>
+                                            <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                                <span class="truncate">数据源编号：ZY2026060101</span>
+                                                <span>更新时间：2026-06-01 18:42:10</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- 数据卡片 3 -->
+                                        <div class="ent-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-selected="0" onclick="toggleEnt(this)">
+                                            <div class="flex items-start justify-between gap-2">
+                                                <div class="flex items-center gap-2 min-w-0">
+                                                    <span class="text-[#303133] font-bold text-[14px] truncate" title="企业采购订单明细数据源">企业采购订单明细数据源</span>
+                                                    <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">数据库表</span>
+                                                </div>
+                                                <span class="ent-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
+                                            </div>
+                                            <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                                <span class="truncate">数据源编号：ZY2026060102</span>
+                                                <span>更新时间：2026-06-01 14:08:45</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- 数据卡片 4 -->
+                                        <div class="ent-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-selected="0" onclick="toggleEnt(this)">
+                                            <div class="flex items-start justify-between gap-2">
+                                                <div class="flex items-center gap-2 min-w-0">
+                                                    <span class="text-[#303133] font-bold text-[14px] truncate" title="供应商基础信息数据源">供应商基础信息数据源</span>
+                                                    <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">数据库表</span>
+                                                </div>
+                                                <span class="ent-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
+                                            </div>
+                                            <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                                <span class="truncate">数据源编号：ZY2026053001</span>
+                                                <span>更新时间：2026-05-30 10:26:07</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- 数据卡片 5 -->
+                                        <div class="ent-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-selected="0" onclick="toggleEnt(this)">
+                                            <div class="flex items-start justify-between gap-2">
+                                                <div class="flex items-center gap-2 min-w-0">
+                                                    <span class="text-[#303133] font-bold text-[14px] truncate" title="仓库库存实时数据源">仓库库存实时数据源</span>
+                                                    <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">数据库表</span>
+                                                </div>
+                                                <span class="ent-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
+                                            </div>
+                                            <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                                <span class="truncate">数据源编号：ZY2026052901</span>
+                                                <span>更新时间：2026-05-29 16:33:21</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- 数据卡片 6 -->
+                                        <div class="ent-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-selected="0" onclick="toggleEnt(this)">
+                                            <div class="flex items-start justify-between gap-2">
+                                                <div class="flex items-center gap-2 min-w-0">
+                                                    <span class="text-[#303133] font-bold text-[14px] truncate" title="供应商金融信息接口">供应商金融信息接口</span>
+                                                    <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">API</span>
+                                                </div>
+                                                <span class="ent-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
+                                            </div>
+                                            <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                                <span class="truncate">接口编号：JK2026052801</span>
+                                                <span>更新时间：2026-05-28 11:52:39</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 页码 -->
+                                    <div class="flex justify-end items-center gap-2 text-[#606266] text-[13px] col-span-3">
+                                        <span class="mr-1">共 6 条</span>
+                                        <button class="w-7 h-7 border border-gray-200 rounded flex items-center justify-center text-gray-400 hover:text-[#1c7ffd] hover:border-[#1c7ffd] bg-white transition-colors">
+                                            <i class="fa-solid fa-chevron-left text-xs"></i>
+                                        </button>
+                                        <button class="w-7 h-7 border border-[#1c7ffd] bg-[#1c7ffd] text-white rounded flex items-center justify-center shadow-sm">1</button>
+                                        <button class="w-7 h-7 border border-gray-200 rounded flex items-center justify-center text-gray-400 hover:text-[#1c7ffd] hover:border-[#1c7ffd] bg-white transition-colors">
+                                            <i class="fa-solid fa-chevron-right text-xs"></i>
+                                        </button>
+                                        <div class="relative ml-2">
+                                            <select class="border border-gray-200 rounded px-3 py-1 pr-6 appearance-none focus:outline-none focus:border-[#1c7ffd] bg-white cursor-pointer hover:border-gray-300 transition-colors text-[13px]">
+                                                <option>10 条/页</option>
+                                                <option>20 条/页</option>
+                                                <option>50 条/页</option>
+                                            </select>
+                                            <i class="fa-solid fa-chevron-down absolute right-2 top-1/2 -translate-y-1/2 text-[10px] text-gray-400 pointer-events-none"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 底部操作按钮 -->
+                    <div class="px-6 py-4 border-t border-gray-100 flex justify-end gap-3 shrink-0">
+                        <a href="scene_center.html" class="px-6 py-1.5 border border-gray-300 rounded text-[#606266] hover:text-[#1c7ffd] hover:border-[#1c7ffd] transition-colors text-sm bg-white shadow-sm">取消</a>
+                        <button class="px-6 py-1.5 border border-[#1c7ffd] rounded text-[#1c7ffd] hover:bg-blue-50 transition-colors text-sm bg-white shadow-sm">暂存</button>
+                        <button id="prev-btn" onclick="goStep(currentStep-1)" class="hidden px-6 py-1.5 border border-gray-300 rounded text-[#606266] hover:text-[#1c7ffd] hover:border-[#1c7ffd] transition-colors text-sm bg-white shadow-sm">上一步</button>
+                        <button id="next-btn" onclick="nextStep()" class="px-6 py-1.5 bg-[#1c7ffd] text-white rounded hover:bg-blue-500 transition-colors text-sm shadow-sm">下一步</button>
+                    </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let currentStep = 1;
+
+        function renderSteps() {
+            document.querySelectorAll('[data-step]').forEach(el => {
+                const n = Number(el.dataset.step);
+                const circle = el.querySelector('.step-circle');
+                const label = el.querySelector('.step-label');
+
+                circle.className = 'step-circle w-8 h-8 rounded-full flex items-center justify-center font-bold';
+                if (n < currentStep) {
+                    circle.classList.add('border', 'border-[#1c7ffd]', 'text-[#1c7ffd]', 'bg-white', 'shadow-sm');
+                    circle.innerHTML = '<i class="fa-solid fa-check"></i>';
+                    label.className = 'step-label ml-3 text-[#303133] font-medium';
+                } else if (n === currentStep) {
+                    circle.classList.add('bg-[#1c7ffd]', 'text-white', 'shadow-sm');
+                    circle.textContent = n;
+                    label.className = 'step-label ml-3 text-[#303133] font-medium';
+                } else {
+                    circle.classList.add('border', 'border-gray-300', 'text-gray-400', 'bg-white');
+                    circle.textContent = n;
+                    label.className = 'step-label ml-3 text-gray-400';
+                }
+            });
+
+            const line1 = document.getElementById('line1');
+            const line2 = document.getElementById('line2');
+            line1.className = 'absolute left-[12%] right-[52%] h-[1px] top-1/2 -translate-y-1/2 z-0 ' + (currentStep > 1 ? 'bg-[#1c7ffd]' : 'bg-gray-200');
+            line2.className = 'absolute left-[48%] right-[12%] h-[1px] top-1/2 -translate-y-1/2 z-0 ' + (currentStep > 2 ? 'bg-[#1c7ffd]' : 'bg-gray-200');
+
+            document.querySelectorAll('.step-panel').forEach(panel => {
+                panel.classList.toggle('hidden', Number(panel.dataset.panel) !== currentStep);
+            });
+
+            document.getElementById('prev-btn').classList.toggle('hidden', currentStep === 1);
+            const nextBtn = document.getElementById('next-btn');
+            nextBtn.textContent = currentStep === 3 ? '确认' : '下一步';
+
+            if (currentStep === 3) {
+                syncDevBaseFromSelection();
+            }
+        }
+
+        function goStep(step) {
+            if (step < 1 || step > 3) return;
+            currentStep = step;
+            renderSteps();
+        }
+
+        function nextStep() {
+            if (currentStep < 3) {
+                goStep(currentStep + 1);
+            } else {
+                window.location.href = 'scene_center.html';
+            }
+        }
+
+        // 工具卡片单选（仅在当前开发底座面板内单选）
+        function selectTool(card) {
+            const panel = card.closest('.dev-panel');
+            panel.querySelectorAll('.tool-card').forEach(c => {
+                c.classList.remove('border-[#1c7ffd]');
+                c.classList.add('border-gray-200');
+                const dot = c.querySelector('.tool-dot');
+                dot.className = 'tool-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5';
+                dot.innerHTML = '';
+            });
+            card.classList.remove('border-gray-200');
+            card.classList.add('border-[#1c7ffd]');
+            const dot = card.querySelector('.tool-dot');
+            dot.className = 'tool-dot w-4 h-4 rounded-full bg-[#1c7ffd] text-white flex items-center justify-center shrink-0 mt-0.5';
+            dot.innerHTML = '<i class="fa-solid fa-check text-[9px]"></i>';
+        }
+
+        // 开发底座 Tab 切换
+        let activeDevTab = 'offline';
+
+        function setDevTab(key) {
+            activeDevTab = key;
+            document.querySelectorAll('.dev-tab').forEach(t => {
+                t.classList.remove('border-b-2', 'border-[#1c7ffd]', 'text-[#1c7ffd]', 'font-medium');
+                t.classList.add('text-[#606266]');
+            });
+            const tab = document.querySelector('.dev-tab[data-tab="' + key + '"]');
+            if (tab) {
+                tab.classList.remove('text-[#606266]');
+                tab.classList.add('border-b-2', 'border-[#1c7ffd]', 'text-[#1c7ffd]', 'font-medium');
+            }
+            document.querySelectorAll('.dev-panel').forEach(p => {
+                p.classList.toggle('hidden', p.dataset.panelTab !== key);
+                p.classList.toggle('flex', p.dataset.panelTab === key);
+            });
+        }
+
+        function switchDevTab(tab) {
+            setDevTab(tab.dataset.tab);
+        }
+
+        // 开发底座多选：选中哪个才出现对应 Tab
+        function toggleDevBase(el) {
+            const tab = document.querySelector('.dev-tab[data-tab="' + el.value + '"]');
+            tab.classList.toggle('hidden', !el.checked);
+
+            if (el.checked) {
+                setDevTab(el.value);
+            } else if (activeDevTab === el.value) {
+                const first = Array.from(document.querySelectorAll('.dev-tab')).find(t => !t.classList.contains('hidden'));
+                if (first) {
+                    setDevTab(first.dataset.tab);
+                } else {
+                    activeDevTab = '';
+                    document.querySelectorAll('.dev-panel').forEach(p => {
+                        p.classList.add('hidden');
+                        p.classList.remove('flex');
+                    });
+                }
+            }
+            updateDevTabBarVisibility();
+        }
+
+        // 无可见 Tab 时隐藏 Tab 栏
+        function updateDevTabBarVisibility() {
+            const hasVisibleTab = Array.from(document.querySelectorAll('.dev-tab')).some(t => !t.classList.contains('hidden'));
+            document.getElementById('dev-tab-bar').classList.toggle('hidden', !hasVisibleTab);
+        }
+
+        // 进入第三步时，按第二步选中的数据产品开发工具回显
+        function syncDevBaseFromSelection() {
+            const selectedCards = document.querySelectorAll('#resource-list .resource-card[data-selected="1"]');
+            const tool = selectedCards.length ? selectedCards[0].dataset.tool : null;
+            const locked = !!tool && ['offline', 'online', 'privacy'].includes(tool);
+
+            document.querySelectorAll('.dev-base-item').forEach(item => {
+                item.classList.toggle('hidden', locked && item.dataset.base !== tool);
+            });
+
+            document.querySelectorAll('.dev-base').forEach(b => {
+                b.checked = locked && b.value === tool;
+            });
+
+            document.querySelectorAll('.dev-tab').forEach(t => {
+                t.classList.toggle('hidden', !(locked && t.dataset.tab === tool));
+            });
+
+            if (locked) {
+                setDevTab(tool);
+            } else {
+                activeDevTab = '';
+                document.querySelectorAll('.dev-panel').forEach(p => {
+                    p.classList.add('hidden');
+                    p.classList.remove('flex');
+                });
+            }
+            updateDevTabBarVisibility();
+        }
+
+        // 仅可选择开发工具相同的数据产品卡片
+        function refreshResourceLocks() {
+            const cards = document.querySelectorAll('#resource-list .resource-card');
+            const selectedCard = document.querySelector('#resource-list .resource-card[data-selected="1"]');
+            const activeTool = selectedCard ? selectedCard.dataset.tool : null;
+
+            cards.forEach(card => {
+                const locked = activeTool && card.dataset.tool !== activeTool;
+                card.dataset.locked = locked ? '1' : '0';
+                card.classList.toggle('opacity-40', !!locked);
+                card.classList.toggle('cursor-not-allowed', !!locked);
+                card.classList.toggle('hover:border-[#1c7ffd]', !locked);
+                card.classList.toggle('cursor-pointer', !locked);
+            });
+        }
+
+        // 数据产品卡片多选
+        function toggleResource(card) {
+            if (card.dataset.locked === '1') return;
+            const dot = card.querySelector('.res-dot');
+            const selected = card.dataset.selected === '1';
+            if (selected) {
+                card.dataset.selected = '0';
+                card.classList.remove('border-[#1c7ffd]');
+                card.classList.add('border-gray-200');
+                dot.className = 'res-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5';
+                dot.innerHTML = '';
+            } else {
+                card.dataset.selected = '1';
+                card.classList.remove('border-gray-200');
+                card.classList.add('border-[#1c7ffd]');
+                dot.className = 'res-dot w-4 h-4 rounded-full bg-[#1c7ffd] text-white flex items-center justify-center shrink-0 mt-0.5';
+                dot.innerHTML = '<i class="fa-solid fa-check text-[9px]"></i>';
+            }
+            refreshResourceLocks();
+            updateSelection();
+        }
+
+        // 加工数据 Tab 切换
+        function switchDataTab(tab) {
+            const wrap = tab.parentElement;
+            wrap.querySelectorAll('.data-tab').forEach(t => {
+                t.classList.remove('border-b-2', 'border-[#1c7ffd]', 'text-[#1c7ffd]', 'font-medium');
+                t.classList.add('text-[#606266]');
+            });
+            tab.classList.remove('text-[#606266]');
+            tab.classList.add('border-b-2', 'border-[#1c7ffd]', 'text-[#1c7ffd]', 'font-medium');
+
+            const active = tab.dataset.tab;
+            document.querySelectorAll('.data-panel').forEach(p => {
+                p.classList.toggle('hidden', p.dataset.panelTab !== active);
+                p.classList.toggle('flex', p.dataset.panelTab === active);
+            });
+
+            updateSelection();
+        }
+
+        // 本企业的数据卡片多选（无限制）
+        function toggleEnt(card) {
+            const dot = card.querySelector('.ent-dot');
+            const selected = card.dataset.selected === '1';
+            if (selected) {
+                card.dataset.selected = '0';
+                card.classList.remove('border-[#1c7ffd]');
+                card.classList.add('border-gray-200');
+                dot.className = 'ent-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5';
+                dot.innerHTML = '';
+            } else {
+                card.dataset.selected = '1';
+                card.classList.remove('border-gray-200');
+                card.classList.add('border-[#1c7ffd]');
+                dot.className = 'ent-dot w-4 h-4 rounded-full bg-[#1c7ffd] text-white flex items-center justify-center shrink-0 mt-0.5';
+                dot.innerHTML = '<i class="fa-solid fa-check text-[9px]"></i>';
+            }
+            updateSelection();
+        }
+
+        // 更新页签上的已选中数量
+        function updateSelection() {
+            document.getElementById('auth-count').textContent = '(' + document.querySelectorAll('#resource-list .resource-card[data-selected="1"]').length + ')';
+            document.getElementById('ent-count').textContent = '(' + document.querySelectorAll('#ent-list .ent-card[data-selected="1"]').length + ')';
+        }
+
+        renderSteps();
+        refreshResourceLocks();
+    </script>
+</body>
+</html>
