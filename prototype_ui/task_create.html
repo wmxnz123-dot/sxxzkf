@@ -233,12 +233,12 @@
 
                             <div class="relative z-10 flex items-center bg-white px-2" data-step="2">
                                 <div class="step-circle w-8 h-8 rounded-full border border-gray-300 text-gray-400 bg-white flex items-center justify-center font-bold">2</div>
-                                <span class="step-label ml-3 text-gray-400">添加加工数据</span>
+                                <span class="step-label ml-3 text-gray-400">配置开发环境</span>
                             </div>
 
                             <div class="relative z-10 flex items-center bg-white px-2" data-step="3">
                                 <div class="step-circle w-8 h-8 rounded-full border border-gray-300 text-gray-400 bg-white flex items-center justify-center font-bold">3</div>
-                                <span class="step-label ml-3 text-gray-400">配置开发环境</span>
+                                <span class="step-label ml-3 text-gray-400">添加加工数据</span>
                             </div>
                         </div>
                     </div>
@@ -276,8 +276,8 @@
                             </div>
                         </div>
 
-                        <!-- 第三步：配置开发环境 -->
-                        <div class="step-panel hidden" data-panel="3">
+                        <!-- 第二步：配置开发环境 -->
+                        <div class="step-panel hidden" data-panel="2">
                             <div class="w-full max-w-[900px] mx-auto flex flex-col gap-5 pt-2">
                                 <!-- 工具配置 -->
                                 <div class="flex flex-col gap-3">
@@ -472,8 +472,8 @@
                             </div>
                         </div>
 
-                        <!-- 第二步：添加加工数据 -->
-                        <div class="step-panel hidden" data-panel="2">
+                        <!-- 第三步：添加加工数据 -->
+                        <div class="step-panel hidden" data-panel="3">
                             <div class="flex flex-col gap-4 pt-2">
                                 <!-- Tab 与统计 -->
                                 <div class="flex flex-wrap items-center border-b border-gray-200">
@@ -818,7 +818,7 @@
             nextBtn.textContent = currentStep === 3 ? '确认' : '下一步';
 
             if (currentStep === 3) {
-                syncDevBaseFromSelection();
+                refreshResourceLocks();
             }
         }
 
@@ -905,50 +905,27 @@
             document.getElementById('dev-tab-bar').classList.toggle('hidden', !hasVisibleTab);
         }
 
-        // 进入第三步时，按第二步选中的数据产品开发工具回显
-        function syncDevBaseFromSelection() {
-            const selectedCards = document.querySelectorAll('#resource-list .resource-card[data-selected="1"]');
-            const tool = selectedCards.length ? selectedCards[0].dataset.tool : null;
-            const locked = !!tool && ['offline', 'online', 'privacy'].includes(tool);
-
-            document.querySelectorAll('.dev-base-item').forEach(item => {
-                item.classList.toggle('hidden', locked && item.dataset.base !== tool);
-            });
-
-            document.querySelectorAll('.dev-base').forEach(b => {
-                b.checked = locked && b.value === tool;
-            });
-
-            document.querySelectorAll('.dev-tab').forEach(t => {
-                t.classList.toggle('hidden', !(locked && t.dataset.tab === tool));
-            });
-
-            if (locked) {
-                setDevTab(tool);
-            } else {
-                activeDevTab = '';
-                document.querySelectorAll('.dev-panel').forEach(p => {
-                    p.classList.add('hidden');
-                    p.classList.remove('flex');
-                });
-            }
-            updateDevTabBarVisibility();
-        }
-
         // 仅可选择开发工具相同的数据产品卡片
         function refreshResourceLocks() {
-            const cards = document.querySelectorAll('#resource-list .resource-card');
-            const selectedCard = document.querySelector('#resource-list .resource-card[data-selected="1"]');
-            const activeTool = selectedCard ? selectedCard.dataset.tool : null;
-
-            cards.forEach(card => {
-                const locked = activeTool && card.dataset.tool !== activeTool;
+            const tools = Array.from(document.querySelectorAll('.dev-base:checked')).map(b => b.value);
+            document.querySelectorAll('#resource-list .resource-card').forEach(card => {
+                const locked = tools.length > 0 && !tools.includes(card.dataset.tool);
                 card.dataset.locked = locked ? '1' : '0';
-                card.classList.toggle('opacity-40', !!locked);
-                card.classList.toggle('cursor-not-allowed', !!locked);
+                card.classList.toggle('opacity-40', locked);
+                card.classList.toggle('cursor-not-allowed', locked);
                 card.classList.toggle('hover:border-[#1c7ffd]', !locked);
                 card.classList.toggle('cursor-pointer', !locked);
+
+                if (locked && card.dataset.selected === '1') {
+                    card.dataset.selected = '0';
+                    card.classList.remove('border-[#1c7ffd]');
+                    card.classList.add('border-gray-200');
+                    const dot = card.querySelector('.res-dot');
+                    dot.className = 'res-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5';
+                    dot.innerHTML = '';
+                }
             });
+            updateSelection();
         }
 
         // 数据产品卡片多选
