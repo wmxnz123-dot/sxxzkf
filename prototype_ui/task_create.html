@@ -290,15 +290,15 @@
                                         <label class="w-[120px] text-right shrink-0 text-[#606266]">开发底座</label>
                                         <div class="ml-4 flex flex-wrap items-center gap-x-8 gap-y-3">
                                             <label class="dev-base-item flex items-center gap-1.5 cursor-pointer" data-base="offline">
-                                                <input type="checkbox" checked class="dev-base w-4 h-4 accent-[#1c7ffd] cursor-pointer" value="offline" onchange="toggleDevBase(this)">
+                                                <input type="radio" name="devBase" checked class="dev-base w-4 h-4 accent-[#1c7ffd] cursor-pointer" value="offline" onchange="toggleDevBase(this)">
                                                 <span class="text-[#606266]">离线开发底座</span>
                                             </label>
                                             <label class="dev-base-item flex items-center gap-1.5 cursor-pointer" data-base="online">
-                                                <input type="checkbox" class="dev-base w-4 h-4 accent-[#1c7ffd] cursor-pointer" value="online" onchange="toggleDevBase(this)">
+                                                <input type="radio" name="devBase" class="dev-base w-4 h-4 accent-[#1c7ffd] cursor-pointer" value="online" onchange="toggleDevBase(this)">
                                                 <span class="text-[#606266]">在线开发底座</span>
                                             </label>
                                             <label class="dev-base-item flex items-center gap-1.5 cursor-pointer" data-base="privacy">
-                                                <input type="checkbox" class="dev-base w-4 h-4 accent-[#1c7ffd] cursor-pointer" value="privacy" onchange="toggleDevBase(this)">
+                                                <input type="radio" name="devBase" class="dev-base w-4 h-4 accent-[#1c7ffd] cursor-pointer" value="privacy" onchange="toggleDevBase(this)">
                                                 <span class="text-[#606266]">隐私计算平台</span>
                                             </label>
                                         </div>
@@ -631,7 +631,7 @@
 
                                 <!-- 页码 -->
                                 <div class="flex justify-end items-center gap-2 text-[#606266] text-[13px]">
-                                    <span class="mr-1">共 9 条</span>
+                                    <span id="auth-total" class="mr-1">共 5 条</span>
                                     <button class="w-7 h-7 border border-gray-200 rounded flex items-center justify-center text-gray-400 hover:text-[#1c7ffd] hover:border-[#1c7ffd] bg-white transition-colors">
                                         <i class="fa-solid fa-chevron-left text-xs"></i>
                                     </button>
@@ -652,100 +652,112 @@
 
                                 <!-- 本企业的数据 -->
                                 <div class="data-panel hidden flex-col gap-3" data-panel-tab="enterprise">
-                                    <div id="ent-list" class="grid grid-cols-3 gap-4 pb-2">
-                                        <!-- 数据卡片 1 -->
-                                        <div class="ent-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-selected="0" onclick="toggleEnt(this)">
-                                            <div class="flex items-start justify-between gap-2">
-                                                <div class="flex items-center gap-2 min-w-0">
-                                                    <span class="text-[#303133] font-bold text-[14px] truncate" title="物流配送轨迹数据源">物流配送轨迹数据源</span>
-                                                    <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">数据库表</span>
-                                                </div>
-                                                <span class="ent-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
-                                            </div>
-                                            <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
-                                                <span class="truncate">数据源编号：ZY2026060201</span>
-                                                <span>更新时间：2026-06-02 09:15:32</span>
-                                            </div>
+                                    <div id="ent-list" class="flex flex-col gap-6 pb-2">
+                                    <div class="flex flex-col gap-3">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-[3px] h-[15px] bg-[#1c7ffd] rounded"></div>
+                                            <span class="text-[#303133] font-bold">接口</span>
+                                            <span class="text-[#909399] text-[12px]">（1）</span>
                                         </div>
-
-                                        <!-- 数据卡片 2 -->
-                                        <div class="ent-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-selected="0" onclick="toggleEnt(this)">
-                                            <div class="flex items-start justify-between gap-2">
-                                                <div class="flex items-center gap-2 min-w-0">
-                                                    <span class="text-[#303133] font-bold text-[14px] truncate" title="产品质量检测报告数据源">产品质量检测报告数据源</span>
-                                                    <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">数据库表</span>
+                                        <div class="grid grid-cols-3 gap-4">
+                                            <div class="ent-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-selected="0" onclick="toggleEnt(this)">
+                                                <div class="flex items-start justify-between gap-2">
+                                                    <div class="flex items-center gap-2 min-w-0">
+                                                        <span class="text-[#303133] font-bold text-[14px] truncate" title="供应商金融信息接口">供应商金融信息接口</span>
+                                                        <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">接口</span>
+                                                    </div>
+                                                    <span class="ent-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
                                                 </div>
-                                                <span class="ent-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
-                                            </div>
-                                            <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
-                                                <span class="truncate">数据源编号：ZY2026060101</span>
-                                                <span>更新时间：2026-06-01 18:42:10</span>
-                                            </div>
-                                        </div>
-
-                                        <!-- 数据卡片 3 -->
-                                        <div class="ent-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-selected="0" onclick="toggleEnt(this)">
-                                            <div class="flex items-start justify-between gap-2">
-                                                <div class="flex items-center gap-2 min-w-0">
-                                                    <span class="text-[#303133] font-bold text-[14px] truncate" title="企业采购订单明细数据源">企业采购订单明细数据源</span>
-                                                    <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">数据库表</span>
+                                                <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                                    <span class="truncate">接口编号：JK2026052801</span>
+                                                    <span>更新时间：2026-05-28 11:52:39</span>
                                                 </div>
-                                                <span class="ent-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
-                                            </div>
-                                            <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
-                                                <span class="truncate">数据源编号：ZY2026060102</span>
-                                                <span>更新时间：2026-06-01 14:08:45</span>
-                                            </div>
-                                        </div>
-
-                                        <!-- 数据卡片 4 -->
-                                        <div class="ent-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-selected="0" onclick="toggleEnt(this)">
-                                            <div class="flex items-start justify-between gap-2">
-                                                <div class="flex items-center gap-2 min-w-0">
-                                                    <span class="text-[#303133] font-bold text-[14px] truncate" title="供应商基础信息数据源">供应商基础信息数据源</span>
-                                                    <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">数据库表</span>
-                                                </div>
-                                                <span class="ent-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
-                                            </div>
-                                            <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
-                                                <span class="truncate">数据源编号：ZY2026053001</span>
-                                                <span>更新时间：2026-05-30 10:26:07</span>
-                                            </div>
-                                        </div>
-
-                                        <!-- 数据卡片 5 -->
-                                        <div class="ent-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-selected="0" onclick="toggleEnt(this)">
-                                            <div class="flex items-start justify-between gap-2">
-                                                <div class="flex items-center gap-2 min-w-0">
-                                                    <span class="text-[#303133] font-bold text-[14px] truncate" title="仓库库存实时数据源">仓库库存实时数据源</span>
-                                                    <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">数据库表</span>
-                                                </div>
-                                                <span class="ent-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
-                                            </div>
-                                            <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
-                                                <span class="truncate">数据源编号：ZY2026052901</span>
-                                                <span>更新时间：2026-05-29 16:33:21</span>
-                                            </div>
-                                        </div>
-
-                                        <!-- 数据卡片 6 -->
-                                        <div class="ent-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-selected="0" onclick="toggleEnt(this)">
-                                            <div class="flex items-start justify-between gap-2">
-                                                <div class="flex items-center gap-2 min-w-0">
-                                                    <span class="text-[#303133] font-bold text-[14px] truncate" title="供应商金融信息接口">供应商金融信息接口</span>
-                                                    <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">API</span>
-                                                </div>
-                                                <span class="ent-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
-                                            </div>
-                                            <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
-                                                <span class="truncate">接口编号：JK2026052801</span>
-                                                <span>更新时间：2026-05-28 11:52:39</span>
                                             </div>
                                         </div>
                                     </div>
 
+                                    <div class="flex flex-col gap-3">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-[3px] h-[15px] bg-[#1c7ffd] rounded"></div>
+                                            <span class="text-[#303133] font-bold">库表</span>
+                                            <span class="text-[#909399] text-[12px]">（5）</span>
+                                        </div>
+                                        <div class="grid grid-cols-3 gap-4">
+                                            <div class="ent-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-selected="0" onclick="toggleEnt(this)">
+                                                <div class="flex items-start justify-between gap-2">
+                                                    <div class="flex items-center gap-2 min-w-0">
+                                                        <span class="text-[#303133] font-bold text-[14px] truncate" title="物流配送轨迹数据源">物流配送轨迹数据源</span>
+                                                        <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">库表</span>
+                                                    </div>
+                                                    <span class="ent-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
+                                                </div>
+                                                <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                                    <span class="truncate">数据源编号：ZY2026060201</span>
+                                                    <span>更新时间：2026-06-02 09:15:32</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="ent-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-selected="0" onclick="toggleEnt(this)">
+                                                <div class="flex items-start justify-between gap-2">
+                                                    <div class="flex items-center gap-2 min-w-0">
+                                                        <span class="text-[#303133] font-bold text-[14px] truncate" title="产品质量检测报告数据源">产品质量检测报告数据源</span>
+                                                        <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">库表</span>
+                                                    </div>
+                                                    <span class="ent-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
+                                                </div>
+                                                <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                                    <span class="truncate">数据源编号：ZY2026060101</span>
+                                                    <span>更新时间：2026-06-01 18:42:10</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="ent-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-selected="0" onclick="toggleEnt(this)">
+                                                <div class="flex items-start justify-between gap-2">
+                                                    <div class="flex items-center gap-2 min-w-0">
+                                                        <span class="text-[#303133] font-bold text-[14px] truncate" title="企业采购订单明细数据源">企业采购订单明细数据源</span>
+                                                        <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">库表</span>
+                                                    </div>
+                                                    <span class="ent-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
+                                                </div>
+                                                <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                                    <span class="truncate">数据源编号：ZY2026060102</span>
+                                                    <span>更新时间：2026-06-01 14:08:45</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="ent-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-selected="0" onclick="toggleEnt(this)">
+                                                <div class="flex items-start justify-between gap-2">
+                                                    <div class="flex items-center gap-2 min-w-0">
+                                                        <span class="text-[#303133] font-bold text-[14px] truncate" title="供应商基础信息数据源">供应商基础信息数据源</span>
+                                                        <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">库表</span>
+                                                    </div>
+                                                    <span class="ent-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
+                                                </div>
+                                                <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                                    <span class="truncate">数据源编号：ZY2026053001</span>
+                                                    <span>更新时间：2026-05-30 10:26:07</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="ent-card bg-white border border-gray-200 rounded-lg p-4 flex flex-col gap-2.5 cursor-pointer hover:border-[#1c7ffd] transition-colors" data-selected="0" onclick="toggleEnt(this)">
+                                                <div class="flex items-start justify-between gap-2">
+                                                    <div class="flex items-center gap-2 min-w-0">
+                                                        <span class="text-[#303133] font-bold text-[14px] truncate" title="仓库库存实时数据源">仓库库存实时数据源</span>
+                                                        <span class="shrink-0 text-[11px] text-[#1c7ffd] bg-blue-50 border border-[#1c7ffd]/30 px-1.5 py-0.5 rounded">库表</span>
+                                                    </div>
+                                                    <span class="ent-dot w-4 h-4 rounded-full border border-gray-300 bg-white shrink-0 mt-0.5"></span>
+                                                </div>
+                                                <div class="flex flex-col gap-1 text-[12px] text-[#606266]">
+                                                    <span class="truncate">数据源编号：ZY2026052901</span>
+                                                    <span>更新时间：2026-05-29 16:33:21</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+
                                     <!-- 页码 -->
-                                    <div class="flex justify-end items-center gap-2 text-[#606266] text-[13px] col-span-3">
+                                    <div class="flex justify-end items-center gap-2 text-[#606266] text-[13px]">
                                         <span class="mr-1">共 6 条</span>
                                         <button class="w-7 h-7 border border-gray-200 rounded flex items-center justify-center text-gray-400 hover:text-[#1c7ffd] hover:border-[#1c7ffd] bg-white transition-colors">
                                             <i class="fa-solid fa-chevron-left text-xs"></i>
@@ -877,26 +889,14 @@
             setDevTab(tab.dataset.tab);
         }
 
-        // 开发底座多选：选中哪个才出现对应 Tab
+        // 开发底座单选：只展示当前选中底座的 Tab
         function toggleDevBase(el) {
-            const tab = document.querySelector('.dev-tab[data-tab="' + el.value + '"]');
-            tab.classList.toggle('hidden', !el.checked);
-
-            if (el.checked) {
-                setDevTab(el.value);
-            } else if (activeDevTab === el.value) {
-                const first = Array.from(document.querySelectorAll('.dev-tab')).find(t => !t.classList.contains('hidden'));
-                if (first) {
-                    setDevTab(first.dataset.tab);
-                } else {
-                    activeDevTab = '';
-                    document.querySelectorAll('.dev-panel').forEach(p => {
-                        p.classList.add('hidden');
-                        p.classList.remove('flex');
-                    });
-                }
-            }
+            document.querySelectorAll('.dev-tab').forEach(t => {
+                t.classList.toggle('hidden', t.dataset.tab !== el.value);
+            });
+            setDevTab(el.value);
             updateDevTabBarVisibility();
+            refreshResourceLocks();
         }
 
         // 无可见 Tab 时隐藏 Tab 栏
@@ -905,18 +905,16 @@
             document.getElementById('dev-tab-bar').classList.toggle('hidden', !hasVisibleTab);
         }
 
-        // 仅可选择开发工具相同的数据产品卡片
+        // 已授权的数据产品仅展示当前开发工具对应的产品
         function refreshResourceLocks() {
-            const tools = Array.from(document.querySelectorAll('.dev-base:checked')).map(b => b.value);
+            const tool = document.querySelector('.dev-base:checked')?.value;
+            let visible = 0;
             document.querySelectorAll('#resource-list .resource-card').forEach(card => {
-                const locked = tools.length > 0 && !tools.includes(card.dataset.tool);
-                card.dataset.locked = locked ? '1' : '0';
-                card.classList.toggle('opacity-40', locked);
-                card.classList.toggle('cursor-not-allowed', locked);
-                card.classList.toggle('hover:border-[#1c7ffd]', !locked);
-                card.classList.toggle('cursor-pointer', !locked);
-
-                if (locked && card.dataset.selected === '1') {
+                const hidden = !!tool && card.dataset.tool !== tool;
+                card.classList.toggle('hidden', hidden);
+                card.dataset.locked = hidden ? '1' : '0';
+                if (!hidden) visible++;
+                if (hidden && card.dataset.selected === '1') {
                     card.dataset.selected = '0';
                     card.classList.remove('border-[#1c7ffd]');
                     card.classList.add('border-gray-200');
@@ -925,6 +923,8 @@
                     dot.innerHTML = '';
                 }
             });
+            const total = document.getElementById('auth-total');
+            if (total) total.textContent = '共 ' + visible + ' 条';
             updateSelection();
         }
 
